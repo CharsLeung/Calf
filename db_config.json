@@ -1,0 +1,64 @@
+{
+  "default": {
+    "host": "192.168.10.249:27017",
+    "dbname": "ppp",
+    "username": "limu",
+    "password": "limu",
+    "dbauth": "admin"
+  },
+  "default__": {
+    "host": "123.234.5.140:57075",
+    "dbname": "big-data",
+    "username": "lxj",
+    "password": "8ELSzEdWrQiA",
+    "dbauth": "admin"
+  },
+  "default_": {
+    "host": "218.255.184.86:57075",
+    "dbname": "big-data",
+    "username": "lxj",
+    "password": "8ELSzEdWrQiA",
+    "dbauth": "admin"
+  },
+  "server": {
+    "host": "123.234.5.140:57075",
+    "dbname": "big-data",
+    "username": "lxj",
+    "password": "8ELSzEdWrQiA",
+    "dbauth": "admin"
+  },
+  "hk": {
+    "host": "218.255.184.86:57075",
+    "dbname": "big-data",
+    "username": "lxj",
+    "password": "8ELSzEdWrQiA",
+    "dbauth": "admin"
+  },
+  "local": {
+    "host": "192.168.10.249:27017",
+    "dbname": "ppp",
+    "username": "limu",
+    "password": "limu",
+    "dbauth": "admin"
+  },
+  "leung": {
+    "host": "127.0.0.1",
+    "replicaset": "test_rs"
+  },
+  "shard_a": {
+    "host": "192.168.10.224:40000",
+    "dbname": "ttt"
+  },
+  "market_a_server": {
+    "host": "119.147.164.60",
+    "port": 7709
+  },
+  "market_f_server": {
+    "host": "124.160.88.183",
+    "port": 7709
+  },
+  "market_ex_server": {
+    "host": "61.152.107.141",
+    "port": 7727
+  }
+}

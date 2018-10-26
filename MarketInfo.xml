@@ -1,0 +1,27 @@
+<Calf name="trade-period" default_market="China_Stock_A">
+    <market id="China_stock_A">
+        <trade_date>
+            <am_open>09:30</am_open>
+            <am_close>11:30</am_close>
+            <pm_open>13:00</pm_open>
+            <pm_close>15:00</pm_close>
+        </trade_date>
+    </market>
+    <market id="HK_stock">
+        <trade_date>
+            <am_open>09:30</am_open>
+            <am_close>12:00</am_close>
+            <pm_open>13:00</pm_open>
+            <pm_close>14:00</pm_close>
+        </trade_date>
+    </market>
+    <market id="test">
+        <trade_date>
+            <id>test</id>
+            <am_open>as</am_open>
+            <am_close>ac</am_close>
+            <pm_open>po</pm_open>
+            <pm_close>pc</pm_close>
+        </trade_date>
+    </market>
+</Calf>
