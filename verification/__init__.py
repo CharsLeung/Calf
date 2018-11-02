@@ -1,12 +1,13 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/3/20 15:24
 """
 from Calf.exception import WarningMessage
 from .validator import ModelValidator, VerifyError
+from .modelfinance import FinanceIndex
 try:
     __import__('matplotlib')
     from .validvisual import ValidVisual

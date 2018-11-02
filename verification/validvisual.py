@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/3/15 16:07
 """
@@ -10,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib import ticker as mticker
-from Calf import FinanceIndex
+from Calf.verification import FinanceIndex
 import datetime as dt
 # 中文和负号的正常显示
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']

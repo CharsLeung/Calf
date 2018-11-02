@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2017/11/27 14:10
 """

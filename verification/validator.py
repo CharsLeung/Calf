@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2017/11/24 9:27
 """
@@ -12,8 +12,7 @@ import re
 from abc import ABCMeta, abstractmethod
 from Calf.utils import trading as td
 from Calf.exception import warning, ExceptionInfo
-from Calf.modelfinance import FinanceIndex as fi
-from Calf import KlineData
+from Calf.verification import FinanceIndex as fi
 
 
 class VerifyError(BaseException):
@@ -72,6 +71,7 @@ class ModelValidator:
     ntf = False  # 计算交易日的方法
     kline_data_location = None  # 回测过程中需要到那个位置读取k线数据
     kline_data_dbname = None
+    from Calf.data import KlineData
     kd = KlineData(kline_data_location, kline_data_dbname)
 
     @classmethod

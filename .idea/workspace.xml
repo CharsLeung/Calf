@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="" />
+    <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/data/otherdata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/accountdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/accountdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/basedata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/basedata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/klinedata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/klinedata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/modeldata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/modeldata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/orderdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/orderdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/realdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/realdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/signaldata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/signaldata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/tickdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/tickdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/webdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/date_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/date_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/crossaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/crossaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/crossmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/crossmodel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/crossrun.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/crossrun.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/crossvalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo/crossvalidator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/modelaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/modelaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/exception.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indicators/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/indicators/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indicators/public.py" beforeDir="false" afterPath="$PROJECT_DIR$/indicators/public.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.py" beforeDir="false" afterPath="$PROJECT_DIR$/log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/shapesimilar.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/shapesimilar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelrun.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/modelrun.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/baseinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/baseinfo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/self_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/self_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/net/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/net/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/net/com.py" beforeDir="false" afterPath="$PROJECT_DIR$/net/com.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/net/log.py" beforeDir="false" afterPath="$PROJECT_DIR$/net/log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/net/prpcrypt.py" beforeDir="false" afterPath="$PROJECT_DIR$/net/prpcrypt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/realkit.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/realkit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sys_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/sys_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ugly.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/ugly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verification/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/verification/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verification/modelfinance.py" beforeDir="false" afterPath="$PROJECT_DIR$/verification/modelfinance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verification/validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/verification/validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verification/validvisual.py" beforeDir="false" afterPath="$PROJECT_DIR$/verification/validvisual.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,35 +58,80 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
-              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+            <state relative-caret-position="342">
+              <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modeldata.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/modeldata.py">
+      <file leaf-file-name="otherdata.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/otherdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+            <state relative-caret-position="822">
+              <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+              <folding>
+                <element signature="e#83#102#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="klinedata.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="validator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/verification/validator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="12780">
+              <caret line="710" column="10" selection-start-line="710" selection-start-column="10" selection-end-line="710" selection-end-column="10" />
+              <folding>
+                <element signature="e#83#98#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modelrun.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="klinedata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/klinedata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-171">
-              <caret line="244" column="44" selection-start-line="244" selection-start-column="44" selection-end-line="244" selection-end-column="44" />
+            <state relative-caret-position="180">
+              <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+              <folding>
+                <element signature="e#83#104#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>@version: 1.0</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>@version: 1.1</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\ProgramData\Anaconda3\Lib\site-packages\Calf</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,15 +142,25 @@
         <option value="$PROJECT_DIR$/data/modeldata.py" />
         <option value="$PROJECT_DIR$/data/tickdata.py" />
         <option value="$PROJECT_DIR$/data/realdata.py" />
+        <option value="$PROJECT_DIR$/verification/__init__.py" />
+        <option value="$PROJECT_DIR$/verification/validvisual.py" />
+        <option value="$PROJECT_DIR$/modelrun.py" />
+        <option value="$PROJECT_DIR$/dev/__init__.py" />
+        <option value="$PROJECT_DIR$/dev/realkit.py" />
+        <option value="$PROJECT_DIR$/dev/modelrun.py" />
+        <option value="$PROJECT_DIR$/verification/validator.py" />
+        <option value="$PROJECT_DIR$/dev/ugly.py" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/data/otherdata.py" />
         <option value="$PROJECT_DIR$/data/klinedata.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -77,11 +180,6 @@
               <item name="Calf" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Calf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Calf" type="462c0819:PsiDirectoryNode" />
-              <item name="verification" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -92,6 +190,12 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ProgramData\Anaconda3\Lib\site-packages\Calf\dev" />
+      <recent name="C:\ProgramData\Anaconda3\Lib\site-packages\Calf\verification" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -130,29 +234,60 @@
       <option name="project" value="LOCAL" />
       <updated>1540544325689</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="first push">
+      <created>1540546862173</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1540546862173</updated>
+    </task>
+    <task id="LOCAL-00004" summary="在Calf中已经实现了各个模块的分离，例如，你需要使用的功能不涉及数据库，Calf将不会引用任何有关数据库的东西">
+      <created>1540547368401</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1540547368401</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Calf的版本 1.0 -&gt; 1.1">
+      <created>1540548154414</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1540548154414</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" weight="0.32985386" />
-      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.34422657" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32985386" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32985386" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -160,9 +295,35 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first push" />
-    <option name="LAST_COMMIT_MESSAGE" value="first push" />
+    <MESSAGE value="在Calf中已经实现了各个模块的分离，例如，你需要使用的功能不涉及数据库，Calf将不会引用任何有关数据库的东西" />
+    <MESSAGE value="Calf的版本 1.0 -&gt; 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calf的版本 1.0 -&gt; 1.1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verification/validator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12780">
+          <caret line="710" column="10" selection-start-line="710" selection-start-column="10" selection-end-line="710" selection-end-column="10" />
+          <folding>
+            <element signature="e#83#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/webdata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1179" />
@@ -172,9 +333,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-639">
           <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-          <folding>
-            <element signature="e#82#101#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -197,13 +355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
-          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/modeldata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -211,10 +362,131 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/verification/validvisual.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding>
+            <element signature="e#83#101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/model.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/realkit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/date_time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/modelrmds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verification/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/ugly.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verification/modelfinance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/modelaction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verification/validator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12780">
+          <caret line="710" column="10" selection-start-line="710" selection-start-column="10" selection-end-line="710" selection-end-column="10" />
+          <folding>
+            <element signature="e#83#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8154">
+          <caret line="453" column="10" lean-forward="true" selection-start-line="453" selection-start-column="10" selection-end-line="453" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/klinedata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="244" column="44" selection-start-line="244" selection-start-column="44" selection-end-line="244" selection-end-column="44" />
+        <state relative-caret-position="180">
+          <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+          <folding>
+            <element signature="e#83#104#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/otherdata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+          <folding>
+            <element signature="e#83#102#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,20 +1,20 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/1/31 11:28
 """
 import datetime as dt
 from Calf.exception import ExceptionInfo
 from Calf.utils import trading, fontcolor
-from Calf import BaseData
 import pandas as pd
 
 
 class ugly:
     """处理一些可以合理避免风险的意外情况， 这相当于是信号上线的最后
     一道关卡"""
+
     @classmethod
     def rrads(cls, date, n):
         """
@@ -23,6 +23,7 @@ class ugly:
         :return:
         """
         try:
+            from Calf.data import BaseData
             aim = trading.trade_period(date, n)
             lt = {'$gte': aim, '$lte': date} if n < 0 else {'$gte': date, '$lte': aim}
             rds = BaseData.read_RRADS(last_time=lt)
@@ -33,6 +34,7 @@ class ugly:
 
     @classmethod
     def remove(cls, data, n):
+        from Calf.data import BaseData
         tdy = dt.date.today()
         tdy = dt.datetime(tdy.year, tdy.month, tdy.day)
         aim = trading.trade_period(tdy, n)

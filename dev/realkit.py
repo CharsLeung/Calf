@@ -1,14 +1,14 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/3/2 11:08
 """
 import datetime as dt
 import pandas as pd
-from Calf import RealData as rd
-from Calf import KlineData as kd
+from Calf.data import RealData as rd
+from Calf.data import KlineData as kd
 from Calf.exception import ExceptionInfo
 from Calf.utils import trading
 

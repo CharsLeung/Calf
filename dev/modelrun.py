@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/2/26 14:50
 """
@@ -9,17 +9,16 @@ import threading
 import time
 import datetime as dt
 import json
-import re
-from timeit import timeit
+# import re
+# from timeit import timeit
 import pandas as pd
 import pytz
 from Calf import project_dir
 from Calf.exception import ExceptionInfo, WarningMessage
 from Calf.utils import trading, fontcolor, sound_notice
-from Calf import KlineData as kd
 from Calf import CalfDateTime
-from Calf import ModelAction
-from apscheduler.schedulers.blocking import BlockingScheduler
+from Calf.dev import ModelAction
+# from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 # from Calf.sys_config import config as cf
 
@@ -88,6 +87,7 @@ class ModelRun:
         _f = False  # 记录当天是否收盘
         klines = action.klines  # 需要跟踪的bar周期
         _id = cls.open_kline_update_log()  # 记录bar更新
+        from Calf.data import KlineData as kd
         while 1:
             try:
                 crt = dt.datetime.now() if tz is None else dt.datetime.now(tz=tz).replace(tzinfo=None)
@@ -497,7 +497,7 @@ class ModelRun:
                     delta = delta.seconds + delta.days * 86400
                     print(fontcolor.F_YELLOW + '-' * 80)
                     print('Note:Calf will sleep {0} seconds and restart on {1}:'.format(delta, min(nsds)))
-                    print('Datetime:' , str(crt))
+                    print('Datetime:', str(crt))
                     print('-' * 80 + fontcolor.END)
                     delta = 1 if delta < 1 else delta
                     time.sleep(delta)

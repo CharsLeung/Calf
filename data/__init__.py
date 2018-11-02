@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/3/20 15:17
 @describe: Calf模型最基础的研究对象是金融证券的K线数据，大部分工作就是围绕

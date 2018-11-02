@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 """
-@version: 1.0
+@version: 1.1
 @author: LeungJain
 @time: 2018/1/29 10:52
 """
@@ -67,8 +67,9 @@ class KlineData(object):
             dts['time'] = data.time.astype('str')
             dts['time'] = '000' + dts.time
             dts['time'] = dts.time.map(lambda t: t[-4:])
-            dts['date'] = dts.date + " " + dts.time
-            data['date'] = pd.to_datetime(dts.date, format='%Y-%m-%d %H%M')
+            dts['datetime'] = dts.date + " " + dts.time
+            data['datetime'] = pd.to_datetime(dts.date, format='%Y-%m-%d %H%M')
+            data['date'] = data.datetime.dt.normalize()
             return data
         except Exception:
             raise Exception
