@@ -18,8 +18,9 @@ class KlineData(object):
     """
     所有以K线描述的时间序列行数据的读取，插入，删除均通过这个类实现
     """
-    location = None     # klinedata对象的目标数据库服务器位置，
-    dbname = None   # klinedata对象的目标数据库名称
+    location = None  # klinedata对象的目标数据库服务器位置，
+    dbname = None  # klinedata对象的目标数据库名称
+
     # 关于数据库服务器的路径配置在 __init__.py中有说明
 
     def __init__(self, location=None, dbname=None):
@@ -224,7 +225,7 @@ class KlineData(object):
         """
         try:
             r = KLINE_MODEL_TABLE(cls.location, cls.dbname,
-                              kline).update_batch(condition, kw)
+                                  kline).update_batch(condition, kw)
             return r
         except Exception:
             raise MongoIOError('Failed with update by MongoDB')

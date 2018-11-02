@@ -20,6 +20,8 @@ from Calf import CalfDateTime
 from Calf.dev import ModelAction
 # from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
+
+
 # from Calf.sys_config import config as cf
 
 
@@ -40,6 +42,7 @@ class ModelRun:
     相应的表中，ModelRun读到这种更新记录后就会执行ModelAction的real函数。
     有关K线更新的日志的相关信息你可以在KlineData中找到.
     """
+
     @classmethod
     def open_kline_update_log(cls):
         try:
@@ -285,6 +288,7 @@ class ModelRun:
         :param offset:
         :return:
         """
+        from Calf.data import KlineData as kd
         profit_probe_period = dt.timedelta(minutes=1)
         profit_probe_next = CalfDateTime.now(offset=offset)
         _f = False  # 记录当天是否收盘
@@ -371,8 +375,8 @@ class ModelRun:
                     s = dt.datetime.strptime('2000-01-01 ' + t[0], fmt)
                     e = dt.datetime.strptime('2000-01-01 ' + t[1], fmt)
                     # if s > e:
-                        # 如果execute的start大于end说明是当天的end到第二天的start
-                        # raise TypeError('execute start datetime must less than end')
+                    # 如果execute的start大于end说明是当天的end到第二天的start
+                    # raise TypeError('execute start datetime must less than end')
                     xdt.append([s, e])
                     del s, e, t
                 del dts
@@ -413,7 +417,7 @@ class ModelRun:
                     nsds = list()
                     executors = {'default': ThreadPoolExecutor(4),
                                  'processpool': ProcessPoolExecutor(4)}
-                    job_defaults = {'coalesce': True,'max_instances': 1}
+                    job_defaults = {'coalesce': True, 'max_instances': 1}
                     scheduler = BackgroundScheduler(executors=executors,
                                                     job_defaults=job_defaults,
                                                     daemonic=False,
@@ -422,6 +426,7 @@ class ModelRun:
                         d = tdy + dt.timedelta(hours=sdt.hour, minutes=sdt.minute,
                                                seconds=sdt.second)
                         nsds.append(d + dt.timedelta(days=1))
+
                         def action_start(args):
                             print(fontcolor.F_GREEN + '-' * 80)
                             print('Calf-Note:start task running on ', dt.datetime.now(tz=tz))
@@ -429,10 +434,12 @@ class ModelRun:
                             try:
                                 def start(args):
                                     action.start(args=args)
+
                                 t = threading.Thread(target=start, args=(args,))
                                 t.start()
                             except Exception as ep:
                                 ExceptionInfo(ep)
+
                         scheduler.add_job(func=action_start, trigger=DateTrigger(d),
                                           id='action_start', args=[kwargs])
                     if execute_date is not None:
@@ -443,12 +450,14 @@ class ModelRun:
                             try:
                                 def exe(args):
                                     action.execute(args=args)
+
                                 t = threading.Thread(target=exe, args=(args,))
                                 t.start()
                                 t.join(execute_interval - 1)
                                 # action.execute(args=args)
                             except Exception as ep:
                                 ExceptionInfo(ep)
+
                         for x in xdt:
                             sd = tdy + dt.timedelta(hours=x[0].hour, minutes=x[0].minute,
                                                     seconds=x[0].second)
@@ -463,7 +472,7 @@ class ModelRun:
                             scheduler.add_job(func=action_execute,
                                               trigger=IntervalTrigger(seconds=execute_interval,
                                                                       start_date=sd,
-                                                                      end_date=ed),  args=[kwargs])
+                                                                      end_date=ed), args=[kwargs])
                             nsds.append(sd + dt.timedelta(days=1))
 
                     if end_date is not None:
@@ -474,13 +483,15 @@ class ModelRun:
                             try:
                                 def end(args):
                                     action.end(args=args)
+
                                 t = threading.Thread(target=end, args=(args,))
                                 t.start()
                             except Exception as ep:
                                 ExceptionInfo(ep)
+
                         d = tdy + dt.timedelta(hours=edt.hour, minutes=edt.minute, seconds=edt.second)
                         nsds.append(d + dt.timedelta(days=1))
-                        scheduler.add_job(func=action_end, trigger=DateTrigger(d), id='action_end',timezone=tz, 
+                        scheduler.add_job(func=action_end, trigger=DateTrigger(d), id='action_end', timezone=tz,
                                           args=[kwargs])
                     print(fontcolor.F_GREEN + '-' * 80)
                     print('Note:enter Calf real task and mount these tasks:')
@@ -506,7 +517,3 @@ class ModelRun:
                 except Exception as e:
                     ExceptionInfo(e)
             pass
-
-
-
-
