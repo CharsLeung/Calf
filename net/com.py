@@ -104,6 +104,7 @@ def notice(address, **kw):
     ModelClient.ClientFrame(info)
     return ModelClient.send()
 
+
 class BroadCast:
     skt = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     skt.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -144,7 +145,7 @@ class BroadCast:
                 ExceptionInfo(e)
         BroadCast.status = True
 
-    def broading(self, message:str):
+    def broading(self, message):
         try:
             network = '<broadcast>'
             BroadCast.skt.sendto(message.encode('utf-8'), (network, self.PORT))

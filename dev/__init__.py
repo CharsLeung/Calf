@@ -9,3 +9,4 @@ from .model import QuantModel
 from .modelaction import ModelAction
 from .modelrun import ModelRun
 from .modelrmds import recsys
+from .realkit import RealKit

@@ -7,8 +7,6 @@
 """
 import datetime as dt
 import pandas as pd
-from Calf.data import RealData as rd
-from Calf.data import KlineData as kd
 from Calf.exception import ExceptionInfo
 from Calf.utils import trading
 
@@ -22,10 +20,12 @@ class RealKit:
     def real_profit(cls, data, market='ZH'):
         """
         计算实时收益
+        :param market:
         :param data:信号片集，来自于signals,orders...表
         :return:
         """
         try:
+            from Calf.data import RealData as rd
             if market == 'ZH':
                 real_data = rd.get_stocks_data(list(data.stock_code.unique()))
             elif market == 'US':
@@ -58,23 +58,30 @@ class RealKit:
         """
         try:
             if method == 'net':
+                from Calf.data import RealData as rd
                 real_data = rd.get_stocks_data(list(data.stock_code))
                 data.drop('close', axis=1, inplace=True)
-                data = pd.merge(data, real_data.loc[:, ['stock_code', 'price']], on='stock_code')
+                data = pd.merge(data, real_data.loc[:, ['stock_code', 'price']],
+                                on='stock_code')
                 data.rename(columns={'price': 'open_price'}, inplace=True)
             if method == 'local':
                 # 注意使用的是open_date
+                from Calf.data import KlineData as kd
                 data['open_price'] = data.apply(
-                    lambda r: kd.read_one(r['stock_code'], r['open_date'], 'kline_day')['close'], axis=1)
+                    lambda r: kd.read_one(r['stock_code'], r['open_date'],
+                                          'kline_day')['close'], axis=1)
             return data
         except Exception as e:
             ExceptionInfo(e)
             return pd.DataFrame()
+
     @classmethod
     def finally_datetime(cls, date, max_pst_days=1, max_pst_hour=14,
                          max_pst_min=55, bsi=False, market=None):
         """
         根据开仓时间和最长持有时间计算买出时间，默认适用于中国A股股票
+        :param max_pst_min:
+        :param max_pst_hour:
         :param bsi: False表示按自然日计算持有的时间， True表示按交易日计算
         :param date:
         :param max_pst_days:

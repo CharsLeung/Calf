@@ -6,8 +6,9 @@
 @time: 2018/3/20 15:24
 """
 from Calf.exception import WarningMessage
-from .validator import ModelValidator, VerifyError
 from .modelfinance import FinanceIndex
+from .validator import ModelValidator, VerifyError
+
 try:
     __import__('matplotlib')
     from .validvisual import ValidVisual

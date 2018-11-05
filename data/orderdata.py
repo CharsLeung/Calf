@@ -114,7 +114,6 @@ class OrderData(object):
     def update_client_info(cls, condition, **kw):
         """
         按condition条件更新K订单数据
-        :param table_name:
         :param condition: 形如{‘date':datetime.datetime(2018,1,1)}的一个字典
         :param kw:形如close=0这样的参数组
         :return:
