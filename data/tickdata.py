@@ -130,6 +130,7 @@ class TickData(object):
             pipeline.append({'$match': {'datetime': {'$gte': start_date, '$lte': end_date}}})
             if end_date < dt.datetime(2018, 9, 21):
                 data = md().aggregate(table_name='ticker', pipeline=pipeline)
+                data = data.sort_values(['datetime'], ascending=False)
                 return data
             else:
                 # for remote database
@@ -143,8 +144,8 @@ class TickData(object):
                     data = data.sort_values(['datetime'], ascending=False)
                     data = data.drop_duplicates(['datetime'], keep='last')
                     data = data.drop_duplicates(['amount'], keep='last')
-                    data['amount'] = data.amount - data.amount.shift(-1)
-                    data['volume'] = (data.volume - data.volume.shift(-1)) / 100
+                    data['amount'] = data.amount - data.amount.shift(-1).fillna(0)
+                    data['volume'] = (data.volume - data.volume.shift(-1).fillna(0)) / 100
                     cols = ['stock_code', 'date', 'datetime', 'amount', 'volume',
                             'B1', 'B2', 'B3', 'B4', 'B5',
                             'S1', 'S2', 'S3', 'S4', 'S5',
@@ -165,6 +166,6 @@ class TickData(object):
             return pd.DataFrame()
 pass
 # s = dt.datetime.now()
-# d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 14, 25), dt.datetime(2018, 11, 12, 14, 30))
-# print(d.head())
+d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 9, 25), dt.datetime(2018, 11, 12, 9, 30))
+print(d.head())
 # print(dt.datetime.now() - s)
