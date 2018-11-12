@@ -166,6 +166,6 @@ class TickData(object):
             return pd.DataFrame()
 pass
 # s = dt.datetime.now()
-d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 9, 25), dt.datetime(2018, 11, 12, 9, 30))
-print(d.head())
+# d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 9, 25), dt.datetime(2018, 11, 12, 9, 30))
+# print(d.head())
 # print(dt.datetime.now() - s)
