@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/tickdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/tickdata.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,8 +83,8 @@
       <file leaf-file-name="tickdata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/tickdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="133" column="27" lean-forward="true" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+            <state relative-caret-position="365">
+              <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
               <folding>
                 <element signature="e#82#101#0" expanded="true" />
                 <element signature="e#497#1257#0" />
@@ -355,7 +356,21 @@
       <option name="project" value="LOCAL" />
       <updated>1542012788172</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="在data包下的TickData类中修改了ticker的读操作中的一个bug">
+      <created>1542014971465</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1542014971465</updated>
+    </task>
+    <task id="LOCAL-00013" summary="在data包下的TickData类中修改了ticker的读操作中的一个bug">
+      <created>1542015076879</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1542015076879</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -376,11 +391,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32985386" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.2546973" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.25381264" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32897604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32985386" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39869282" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -401,7 +416,8 @@
     <MESSAGE value="小调整，不影响" />
     <MESSAGE value="增加了order推送的工具类" />
     <MESSAGE value="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题" />
+    <MESSAGE value="在data包下的TickData类中修改了ticker的读操作中的一个bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="在data包下的TickData类中修改了ticker的读操作中的一个bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -413,12 +429,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data/tickdata.py</url>
-          <line>157</line>
+          <line>167</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data/tickdata.py</url>
-          <line>168</line>
+          <line>178</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -737,10 +753,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../pandas/core/frame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="3731" column="27" lean-forward="true" selection-start-line="3731" selection-start-column="27" selection-end-line="3731" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/tickdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="133" column="27" lean-forward="true" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+        <state relative-caret-position="365">
+          <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
           <folding>
             <element signature="e#82#101#0" expanded="true" />
             <element signature="e#497#1257#0" />

@@ -154,6 +154,16 @@ class TickData(object):
                             'price', '_id'
                             ]
                     data = data.loc[:, cols]
+                    data['S1V'] = data.S1V / 100
+                    data['S2V'] = data.S2V / 100
+                    data['S3V'] = data.S3V / 100
+                    data['S4V'] = data.S4V / 100
+                    data['S5V'] = data.S5V / 100
+                    data['B1V'] = data.B1V / 100
+                    data['B2V'] = data.B2V / 100
+                    data['B3V'] = data.B3V / 100
+                    data['B4V'] = data.B4V / 100
+                    data['B5V'] = data.B5V / 100
                     data['BoS'] = ''
                     data['bs'] = 0
                     data['classtype'] = 'ticker2'
