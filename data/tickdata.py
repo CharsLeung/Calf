@@ -165,4 +165,3 @@ class TickData(object):
             return pd.DataFrame()
 pass
 # d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 14, 25), dt.datetime(2018, 11, 12, 14, 30))
-# print(d.head())
