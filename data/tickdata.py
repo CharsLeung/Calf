@@ -150,12 +150,12 @@ class TickData(object):
                             'S1', 'S2', 'S3', 'S4', 'S5',
                             'B1V', 'B2V', 'B3V', 'B4V', 'B5V',
                             'S1V', 'S2V', 'S3V', 'S4V', 'S5V',
-                            'price', '_id', 'classtype'
+                            'price', '_id'
                             ]
                     data = data.loc[:, cols]
                     data['BoS'] = ''
                     data['bs'] = 0
-                    # data['classtype'] = 'ticker'
+                    data['classtype'] = 'ticker2'
                     return data
                 else:
                     return pd.DataFrame()
@@ -164,4 +164,7 @@ class TickData(object):
             ExceptionInfo(e)
             return pd.DataFrame()
 pass
+# s = dt.datetime.now()
 # d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 14, 25), dt.datetime(2018, 11, 12, 14, 30))
+# print(d.head())
+# print(dt.datetime.now() - s)

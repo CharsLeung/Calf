@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/lunar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/klinedata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/klinedata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/modeldata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/modeldata.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/tickdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/tickdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/webdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/webdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/db_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/modelrun.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/modelrun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/realkit.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/realkit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verification/validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/verification/validator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -92,8 +83,8 @@
       <file leaf-file-name="tickdata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/tickdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="160" column="41" lean-forward="true" selection-start-line="160" selection-start-column="41" selection-end-line="160" selection-end-column="41" />
+            <state relative-caret-position="52">
+              <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
               <folding>
                 <element signature="e#82#101#0" expanded="true" />
                 <element signature="e#497#1257#0" />
@@ -344,7 +335,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541410615588</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题">
+      <created>1542011851218</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1542011851218</updated>
+    </task>
+    <task id="LOCAL-00010" summary="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题">
+      <created>1542012251399</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1542012251399</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -358,13 +363,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32985386" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.2546973" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32985386" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.2546973" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32897604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32985386" />
@@ -388,7 +394,8 @@
     <MESSAGE value="1.增加了查询股票的板块信息，#用法：OtherData().get_stock_plate('000001')或者传['000001','000002']&#10;2.KlineData的timemerge方法将合并的时间赋值给了datetime" />
     <MESSAGE value="小调整，不影响" />
     <MESSAGE value="增加了order推送的工具类" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加了order推送的工具类" />
+    <MESSAGE value="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -726,8 +733,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/tickdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="160" column="41" lean-forward="true" selection-start-line="160" selection-start-column="41" selection-end-line="160" selection-end-column="41" />
+        <state relative-caret-position="52">
+          <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
           <folding>
             <element signature="e#82#101#0" expanded="true" />
             <element signature="e#497#1257#0" />
