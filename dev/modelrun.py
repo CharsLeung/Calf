@@ -387,12 +387,13 @@ class ModelRun:
             try:
                 edt = dt.datetime.strptime('2000-01-01 ' + end_date, fmt)
             except Exception:
-                raise TypeError('this start_date param like a "15:30:00" string')
+                raise TypeError('this end_date param like a "15:30:00" string')
         if tz is not None:
             if tz not in pytz.all_timezones:
                 raise ValueError('Only timezones from the pytz library are supported')
             else:
                 tz = pytz.timezone(tz)
+        # from pytz import FixedOffset, utc
         from apscheduler.triggers.date import DateTrigger
         from apscheduler.triggers.interval import IntervalTrigger
         from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
@@ -413,7 +414,6 @@ class ModelRun:
             # 交易日
             else:
                 try:
-                    from pytz import FixedOffset, utc
                     nsds = list()
                     executors = {'default': ThreadPoolExecutor(4),
                                  'processpool': ProcessPoolExecutor(4)}

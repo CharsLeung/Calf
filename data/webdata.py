@@ -18,9 +18,13 @@ class WebData():
     def yahoo_stock_data(cls, stock_code, start_date, end_date):
         """
 
-        :param stock_code:
+        :param end_date: a datetime
+        :param start_date: a datetime
+        :param stock_code: symbol like yahoo style
         :return:
         """
+        start_date = int(time.mktime(start_date.timetuple()))
+        end_date = int(time.mktime(end_date.timetuple()))
         stock_code = stock_code.strip()
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '

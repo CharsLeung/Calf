@@ -8,6 +8,7 @@
 import pandas as pd
 import datetime as dt
 from Calf.data import BaseModel
+from Calf.data import ModelData as md
 from Calf.exception import MongoIOError, ExceptionInfo
 
 
@@ -100,3 +101,68 @@ class TickData(object):
         except Exception as e:
             ExceptionInfo(e)
             return pd.DataFrame()
+
+    @classmethod
+    def read_tickers(cls, code, start_date, end_date, field=None, **kw):
+        """
+
+        :param code:
+        :param start_date:
+        :param end_date:
+        :param field:
+        :param kw:
+        :return:
+        """
+        try:
+            pipeline = []
+            if isinstance(code, str):
+                pipeline.append({'$match': {'stock_code': code}})
+            # elif isinstance(code, list):
+            #     pipeline.append({'$match': {'stock_code': {'$in': code}}})
+            else:
+                raise TypeError('type of this code must in (str, list)')
+            sd = dt.datetime(start_date.year, start_date.month, start_date.day)
+            ed = dt.datetime(end_date.year, end_date.month, end_date.day)
+            if sd == ed:
+                pipeline.append({'$match': {'date': ed}})
+            else:
+                pipeline.append({'$match': {'date': {'$gte': sd, '$lte': ed}}})
+            pipeline.append({'$match': {'datetime': {'$gte': start_date, '$lte': end_date}}})
+            if end_date < dt.datetime(2018, 9, 21):
+                data = md().aggregate(table_name='ticker', pipeline=pipeline)
+                return data
+            else:
+                # for remote database
+
+                data = md(location='server2').aggregate(table_name='real_buy_sell_all_stock_code',
+                                                        pipeline=pipeline)
+                if len(data):
+                    ren = dict(S1_V='S1V', S2_V='S2V', S3_V='S3V', S4_V='S4V', S5_V='S5V',
+                               B1_V='B1V', B2_V='B2V', B3_V='B3V', B4_V='B4V', B5_V='B5V')
+                    data = data.rename(columns=ren)
+                    data = data.sort_values(['datetime'], ascending=False)
+                    data = data.drop_duplicates(['datetime'], keep='last')
+                    data = data.drop_duplicates(['amount'], keep='last')
+                    data['amount'] = data.amount - data.amount.shift(-1)
+                    data['volume'] = (data.volume - data.volume.shift(-1)) / 100
+                    cols = ['stock_code', 'date', 'datetime', 'amount', 'volume',
+                            'B1', 'B2', 'B3', 'B4', 'B5',
+                            'S1', 'S2', 'S3', 'S4', 'S5',
+                            'B1V', 'B2V', 'B3V', 'B4V', 'B5V',
+                            'S1V', 'S2V', 'S3V', 'S4V', 'S5V',
+                            'price', '_id', 'classtype'
+                            ]
+                    data = data.loc[:, cols]
+                    data['BoS'] = ''
+                    data['bs'] = 0
+                    # data['classtype'] = 'ticker'
+                    return data
+                else:
+                    return pd.DataFrame()
+            pass
+        except Exception as e:
+            ExceptionInfo(e)
+            return pd.DataFrame()
+pass
+# d = TickData.read_tickers('000001', dt.datetime(2018, 11, 12, 14, 25), dt.datetime(2018, 11, 12, 14, 30))
+# print(d.head())

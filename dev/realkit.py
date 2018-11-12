@@ -36,7 +36,7 @@ class RealKit:
                 raise ValueError('Calf current only support (ZH, US, HK)')
             if real_data is None:
                 return pd.DataFrame()
-            data = pd.merge(data, real_data, on='stock_code')
+            data = pd.merge(data, real_data, on=['stock_code'])
             data['price'] = data.price.astype('float')  # 实时价格
             data['profit'] = (data.price - data.open_price) / data.open_price
             data.fillna(0, inplace=True)

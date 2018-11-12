@@ -653,6 +653,7 @@ class ModelValidator:
     def param_optimization(cls, param_table, on='day', order_close=None):
         """
         暴力参数求解
+        :param order_close:
         :param param_table:包含max_pst_vol,max_pst_days,stop_get,stop_loss交易参数组合
         的参数表，这是一个df
         :param on:何种级别的回测
@@ -702,6 +703,7 @@ class ModelValidator:
     def index_profit(cls, sd, ed, kline, index_code=None):
         """
         计算回测验证期内的大盘收益
+        :param index_code:
         :param sd:
         :param ed:
         :param kline: 选择计算大盘收益的k线粒度
@@ -756,6 +758,8 @@ class ModelValidator:
     def similar_amount(cls, goods, kline, gap=5):
         """
         计算交易信号发生后gap分钟内发生的交易额，适用于A股
+        :param gap:
+        :param kline:
         :param goods:
         :return:
         """
@@ -882,7 +886,7 @@ class ModelValidator:
         :return:
         """
         try:
-            must = ['code', 'open_date',]
+            must = ['code', 'open_date']
             if set(must) <= set(details.columns):
                 pass
             else:

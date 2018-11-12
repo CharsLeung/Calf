@@ -224,6 +224,7 @@ class ModelData(object):
             raise MongoIOError('Failed with insert data by MongoDB')
 
     # @classmethod
+    # @deprecated()
     def read_trade_menu(self, model_from, start_date=None,
                         end_date=None, version=None, **kw):
         """

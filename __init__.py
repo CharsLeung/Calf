@@ -50,7 +50,7 @@ if missing_dependencies:
     #
     raise ImportError(
         "Missing required dependencies {0}".format(missing_dependencies))
-del hard_dependencies, dependency, missing_dependencies
+del hard_dependencies, missing_dependencies
 
 import pandas
 from Calf.sys_config import config

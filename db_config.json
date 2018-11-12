@@ -1,12 +1,12 @@
 {
-  "default__": {
+  "default": {
     "host": "192.168.10.249:27017",
     "dbname": "ppp",
     "username": "limu",
     "password": "limu",
     "dbauth": "admin"
   },
-  "default": {
+  "default__": {
     "host": "123.234.5.140:57075",
     "dbname": "big-data",
     "username": "lxj",
@@ -26,6 +26,10 @@
     "username": "lxj",
     "password": "8ELSzEdWrQiA",
     "dbauth": "admin"
+  },
+    "server2": {
+    "host": "123.234.5.140:57076",
+    "dbname": "ttt"
   },
   "hk": {
     "host": "218.255.184.86:57075",
