@@ -106,6 +106,65 @@ class WebData():
         f = pdr.DataReader('000001', 'iex', start, end)
         print(f.head())
 
+    @classmethod
+    def get_capital_flow_hs_a(cls):
+        try:
+            data = requests.get('http://ff.eastmoney.com/EM_CapitalFlowInterf'
+                                'ace/api/js?id=ls&type=ff&check=MLBMS&cb=var%20'
+                                'aff_data=&js={(x)}&rtntype=3&acces_token=1942f'
+                                '5da9b46b069953c873404aad4b5&_=1542089930344')
+            data = data.text
+            data = data.split('=')[1]
+            data = eval(data)
+            data['xa'] = data['xa'].split(',')
+            data['xa'] = data['xa'][0:-1]
+            data = pd.DataFrame(data)
+            data['ya'] = data.ya.map(lambda x: x.split(','))
+            data['small'] = data.ya.map(lambda x: x[4])
+            data['big'] = data.ya.map(lambda x: x[2])
+            data['super_big'] = data.ya.map(lambda x: x[1])
+            data['mid'] = data.ya.map(lambda x: x[3])
+            data['main'] = data.ya.map(lambda x: x[0])
+            data.drop(['ya'], axis=1, inplace=True)
+            data = data.rename({'xa': 'date'}, axis=1)
+            data = data.replace('', np.NaN).dropna()
+            _ = 'float'
+            data = data.astype({'small': _, 'big': _, 'super_big': _, 'mid': _, 'main': _})
+            # print(data)
+            return data
+
+        except Exception as e:
+            print(e)
+            return None
+
+    @classmethod
+    def get_capital_flow_hk(cls, direction='north'):
+        try:
+            data = requests.get(url='http://ff.eastmoney.com/EM_CapitalF'
+                                    'lowInterface/api/js?id=' + direction +
+                                    '&type=EFR&rtntype=2&acces_token=1942f5d'
+                                    'a9b46b069953c873404aad4b5&js=var%20zhbO'
+                                    'snorth=({data:[(x)]})')
+            data = data.text
+            data = data.split('=')[1].replace('(', '').replace(')', '').replace('data', '"data"')
+            data = eval(data)
+            data = pd.DataFrame({'ya': data['data']})
+            data['ya'] = data.ya.map(lambda x: x.split(','))
+            data['date'] = data.ya.map(lambda x: x[0])
+            data['H'] = data.ya.map(lambda x: x[1])
+            data['S'] = data.ya.map(lambda x: x[2])
+            data['H_l'] = data.ya.map(lambda x: x[3])
+            data['S_l'] = data.ya.map(lambda x: x[4])  # 深市剩余资金
+            data = data.replace('', np.NaN).dropna()
+            _ = 'float'
+            data = data.astype({'S': _, 'H': _, 'H_l': _, 'S_l': _})
+            data['money'] = data.H + data.S
+            data = data.drop(['ya'], axis=1)
+            return data
+        except Exception as e:
+            print(e)
+            return None
+
 pass
 # t = dt.datetime.today()
 # sd = dt.datetime(2018, 6, 1)
@@ -116,4 +175,7 @@ pass
 # d = WebData.yahoo_stock_data('SBIN.BO', sd, ed)
 # print(d.head())
 # WebData.IEX_data('')
+# d = WebData.get_capital_flow_hs_a()
+# d = WebData.get_capital_flow_hk()
+pass
 

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/tickdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/tickdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/webdata.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,23 +68,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webdata.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="webdata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/webdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-752">
-              <caret line="35" column="48" lean-forward="true" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+            <state relative-caret-position="436">
+              <caret line="163" column="30" lean-forward="true" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
               <folding>
                 <element signature="e#82#93#0" expanded="true" />
+                <element signature="e#322#2974#0" />
+                <element signature="e#3038#3703#0" />
+                <element signature="e#3759#3908#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tickdata.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tickdata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/tickdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
+            <state relative-caret-position="941">
+              <caret line="164" column="48" lean-forward="true" selection-start-line="164" selection-start-column="48" selection-end-line="164" selection-end-column="48" />
               <folding>
                 <element signature="e#82#101#0" expanded="true" />
                 <element signature="e#497#1257#0" />
@@ -151,9 +154,9 @@
         <option value="$PROJECT_DIR$/data/klinedata.py" />
         <option value="$PROJECT_DIR$/lunar.py" />
         <option value="$PROJECT_DIR$/data/modeldata.py" />
-        <option value="$PROJECT_DIR$/data/webdata.py" />
         <option value="$PROJECT_DIR$/db_config.json" />
         <option value="$PROJECT_DIR$/data/tickdata.py" />
+        <option value="$PROJECT_DIR$/data/webdata.py" />
       </list>
     </option>
   </component>
@@ -220,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.tickdata">
+  <component name="RunManager" selected="Python.webdata">
     <configuration name="lunar" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Calf" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -257,12 +260,32 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="webdata" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Calf" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/webdata.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.lunar" />
       <item itemvalue="Python.tickdata" />
+      <item itemvalue="Python.webdata" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.webdata" />
         <item itemvalue="Python.tickdata" />
         <item itemvalue="Python.lunar" />
       </list>
@@ -370,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542015076879</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="在data包下的TickData类中修改了ticker的读操作中的一个bug">
+      <created>1542016222974</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1542016222974</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -384,7 +414,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
@@ -442,8 +471,18 @@
           <line>133</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/webdata.py</url>
+          <line>179</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data/webdata.py</url>
+          <line>178</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="11" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -729,16 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/webdata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-752">
-          <caret line="35" column="48" lean-forward="true" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
-          <folding>
-            <element signature="e#82#93#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/modeldata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -762,13 +791,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/tickdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="161" column="42" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
+        <state relative-caret-position="941">
+          <caret line="164" column="48" lean-forward="true" selection-start-line="164" selection-start-column="48" selection-end-line="164" selection-end-column="48" />
           <folding>
             <element signature="e#82#101#0" expanded="true" />
             <element signature="e#497#1257#0" />
             <element signature="e#1371#2112#0" />
             <element signature="e#2200#3363#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/webdata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="163" column="30" lean-forward="true" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
+          <folding>
+            <element signature="e#82#93#0" expanded="true" />
+            <element signature="e#322#2974#0" />
+            <element signature="e#3038#3703#0" />
+            <element signature="e#3759#3908#0" />
           </folding>
         </state>
       </provider>
