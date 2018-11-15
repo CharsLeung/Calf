@@ -505,7 +505,7 @@ class ModelRun:
                     # ed = CalfDateTime.now(tz, offset)
                     nd = dt.datetime.now() if tz is None else dt.datetime.now(tz=tz).replace(tzinfo=None)
                     delta = (min(nsds) - nd)
-                    delta = delta.seconds + delta.days * 86400
+                    delta = delta.seconds + delta.days * 86400 - 1
                     print(fontcolor.F_YELLOW + '-' * 80)
                     print('Note:Calf will sleep {0} seconds and restart on {1}:'.format(delta, min(nsds)))
                     print('Datetime:', str(crt))

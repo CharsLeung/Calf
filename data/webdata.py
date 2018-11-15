@@ -126,7 +126,7 @@ class WebData():
             data['mid'] = data.ya.map(lambda x: x[3])
             data['main'] = data.ya.map(lambda x: x[0])
             data.drop(['ya'], axis=1, inplace=True)
-            data = data.rename({'xa': 'date'}, axis=1)
+            data = data.rename(columns={'xa': 'date'})
             data = data.replace('', np.NaN).dropna()
             _ = 'float'
             data = data.astype({'small': _, 'big': _, 'super_big': _, 'mid': _, 'main': _})
