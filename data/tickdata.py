@@ -105,7 +105,7 @@ class TickData(object):
     @classmethod
     def read_tickers(cls, code, start_date, end_date, field=None, **kw):
         """
-
+        读某只股票的tick
         :param code:
         :param start_date:
         :param end_date:
@@ -128,6 +128,8 @@ class TickData(object):
             else:
                 pipeline.append({'$match': {'date': {'$gte': sd, '$lte': ed}}})
             pipeline.append({'$match': {'datetime': {'$gte': start_date, '$lte': end_date}}})
+            for k, v in zip(kw.keys(), kw.values()):
+                pipeline.append({'$match': {k: v}})
             if end_date < dt.datetime(2018, 9, 21):
                 data = md().aggregate(table_name='ticker', pipeline=pipeline)
                 data = data.sort_values(['datetime'], ascending=False)

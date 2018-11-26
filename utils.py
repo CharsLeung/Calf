@@ -7,16 +7,13 @@
 """
 import datetime as dt
 import warnings
-import time
 # import pygame
 import threading
 import smtplib
 import email.mime.multipart
 import email.mime.text
 from Calf import config
-import sys
 from business_calendar import Calendar, MO, TU, WE, TH, FR
-from Calf import project_dir
 from Calf.exception import ExceptionInfo
 
 warnings.filterwarnings('ignore')
@@ -114,6 +111,7 @@ class trading:
     def trade_period(cls, start, days, holidays=None):
         """
         计算某个时间x个交易日后的时间,或之前（days为一个负数）
+        :param holidays:
         :param start:
         :param days:
         :return:
@@ -132,6 +130,7 @@ class trading:
     def is_trade_day(cls, date, holidays=None):
         """
         判断给定的这个时间是否是交易日（以日记）
+        :param holidays:
         :param date: 需要判断的时间
         :return:
         """
@@ -325,7 +324,7 @@ class File:
         检查文件夹，有返回0
         没有的，新建，返回1
         其他返回-1
-        :param file_name:
+        :param path:
         :return:
         """
         # 引入模块

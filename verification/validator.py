@@ -54,12 +54,12 @@ class ModelValidator:
     min60 = [1030, 1130, 1400, 1500]
     min30 = [1000, 1030, 1100, 1130, 1330, 1400, 1430, 1500]
     min15 = [945, 1000, 1015, 1030, 1045, 1100, 1115, 1130,
-             1315,1330, 1345, 1400, 1415, 1430, 1445, 1500]
+             1315, 1330, 1345, 1400, 1415, 1430, 1445, 1500]
     min5 = [935, 940, 945, 950, 955, 1000, 1005, 1010, 1015,
             1020, 1025, 1030, 1035, 1040, 1045, 1050, 1055,
             1100, 1105, 1110, 1115, 1120, 1125, 1130, 1305,
             1310, 1315, 1320, 1325, 1330, 1335, 1340, 1345,
-            1350,1355, 1400, 1405, 1410, 1415, 1420, 1425,
+            1350, 1355, 1400, 1405, 1410, 1415, 1420, 1425,
             1430, 1435, 1440, 1445, 1450, 1455, 1500]
 
     # 验证得到的最终结果最少包含但不限于cols描述的一个df
@@ -664,7 +664,8 @@ class ModelValidator:
         rls = list()
         for i, r in param_table.iterrows():
             try:
-                # p = dict(max_pst_vol=r.max_pst_vol, max_pst_days=r.max_pst_days, stop_get=r.stop_get, stop_loss=r.stop_loss)
+                # p = dict(max_pst_vol=r.max_pst_vol, max_pst_days=r.max_pst_days,
+                #  stop_get=r.stop_get, stop_loss=r.stop_loss)
                 cls.modelparammodify(max_pst_vol=r.max_pst_vol, max_pst_days=r.max_pst_days,
                                      stop_get=r.stop_get, stop_loss=r.stop_loss)
                 dit, mus, tdr = cls.verify_day(order_close) if on == 'day' else cls.verify_min(order_close)

@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/webdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/webdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verification/validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/verification/validator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/db_config.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -38,13 +39,41 @@
       <file leaf-file-name="modelrun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1526">
-              <caret line="388" column="29" selection-start-line="388" selection-start-column="29" selection-end-line="388" selection-end-column="29" />
+            <state relative-caret-position="2884">
+              <caret line="511" column="51" selection-start-line="511" selection-start-column="51" selection-end-line="511" selection-end-column="51" />
               <folding>
                 <element signature="e#83#99#0" expanded="true" />
                 <element signature="e#2234#5466#0" />
                 <element signature="e#5545#10061#0" />
                 <element signature="e#11939#14839#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/verification/validator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+              <folding>
+                <element signature="e#83#98#0" expanded="true" />
+                <element signature="e#20098#21946#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarketHolidays.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MarketHolidays.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="188" column="7" lean-forward="true" selection-start-line="188" selection-start-column="7" selection-end-line="188" selection-end-column="7" />
+              <folding>
+                <element signature="n#market#0;n#Calf#0;n#!!top" />
+                <element signature="n#market#2;n#Calf#0;n#!!top" />
+                <element signature="n#market#4;n#Calf#0;n#!!top" />
+                <element signature="n#market#5;n#Calf#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -68,16 +97,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webdata.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="webdata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/webdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="163" column="30" lean-forward="true" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
+            <state relative-caret-position="558">
+              <caret line="114" column="78" selection-start-line="114" selection-start-column="78" selection-end-line="114" selection-end-column="78" />
               <folding>
                 <element signature="e#82#93#0" expanded="true" />
                 <element signature="e#322#2974#0" />
                 <element signature="e#3038#3703#0" />
                 <element signature="e#3759#3908#0" />
+                <element signature="e#5390#6492#0" />
               </folding>
             </state>
           </provider>
@@ -87,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/data/tickdata.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="941">
-              <caret line="164" column="48" lean-forward="true" selection-start-line="164" selection-start-column="48" selection-end-line="164" selection-end-column="48" />
+              <caret line="164" column="48" selection-start-line="164" selection-start-column="48" selection-end-line="164" selection-end-column="48" />
               <folding>
                 <element signature="e#82#101#0" expanded="true" />
                 <element signature="e#497#1257#0" />
@@ -102,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/dev/realkit.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-234">
-              <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
               <folding>
                 <element signature="e#82#103#0" expanded="true" />
               </folding>
@@ -148,8 +178,6 @@
         <option value="$PROJECT_DIR$/net/__init__.py" />
         <option value="$PROJECT_DIR$/dev/orderpush.py" />
         <option value="$PROJECT_DIR$/dev/realkit.py" />
-        <option value="$PROJECT_DIR$/verification/validator.py" />
-        <option value="$PROJECT_DIR$/dev/modelrun.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/data/klinedata.py" />
         <option value="$PROJECT_DIR$/lunar.py" />
@@ -157,6 +185,9 @@
         <option value="$PROJECT_DIR$/db_config.json" />
         <option value="$PROJECT_DIR$/data/tickdata.py" />
         <option value="$PROJECT_DIR$/data/webdata.py" />
+        <option value="$PROJECT_DIR$/dev/modelrun.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/verification/validator.py" />
       </list>
     </option>
   </component>
@@ -193,6 +224,11 @@
               <item name="Calf" type="b2602c69:ProjectViewProjectNode" />
               <item name="Calf" type="462c0819:PsiDirectoryNode" />
               <item name="net" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Calf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Calf" type="462c0819:PsiDirectoryNode" />
+              <item name="verification" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -400,7 +436,21 @@
       <option name="project" value="LOCAL" />
       <updated>1542016222974</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="在data包下的WebData类中增加了从东方财富数据中心读取资金流的数据">
+      <created>1542095342577</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1542095342577</updated>
+    </task>
+    <task id="LOCAL-00016" summary="DScheduler休眠时间减少了1秒，提前1秒启动任务">
+      <created>1542248971715</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1542248971716</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -414,13 +464,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32985386" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.25381264" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.25381264" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32897604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32985386" />
@@ -446,7 +497,9 @@
     <MESSAGE value="增加了order推送的工具类" />
     <MESSAGE value="在data包下的TickData类中增加了ticker的读操作，主要的合并了ticker的历史与实时数据的异构问题" />
     <MESSAGE value="在data包下的TickData类中修改了ticker的读操作中的一个bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="在data包下的TickData类中修改了ticker的读操作中的一个bug" />
+    <MESSAGE value="在data包下的WebData类中增加了从东方财富数据中心读取资金流的数据" />
+    <MESSAGE value="DScheduler休眠时间减少了1秒，提前1秒启动任务" />
+    <option name="LAST_COMMIT_MESSAGE" value="DScheduler休眠时间减少了1秒，提前1秒启动任务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -523,6 +576,7 @@
           <caret line="710" column="10" selection-start-line="710" selection-start-column="10" selection-end-line="710" selection-end-column="10" />
           <folding>
             <element signature="e#83#98#0" expanded="true" />
+            <element signature="e#20098#21946#0" />
           </folding>
         </state>
       </provider>
@@ -619,13 +673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dev/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -652,16 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-72">
           <caret line="116" column="26" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verification/validator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-186">
-          <caret line="888" column="39" selection-start-line="888" selection-start-column="39" selection-end-line="888" selection-end-column="39" />
-          <folding>
-            <element signature="e#83#98#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -714,19 +751,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1526">
-          <caret line="388" column="29" selection-start-line="388" selection-start-column="29" selection-end-line="388" selection-end-column="29" />
-          <folding>
-            <element signature="e#83#99#0" expanded="true" />
-            <element signature="e#2234#5466#0" />
-            <element signature="e#5545#10061#0" />
-            <element signature="e#11939#14839#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/date_time.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -747,7 +771,7 @@
     <entry file="file://$PROJECT_DIR$/dev/realkit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-234">
-          <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
           <folding>
             <element signature="e#82#103#0" expanded="true" />
           </folding>
@@ -778,7 +802,7 @@
     <entry file="file://$PROJECT_DIR$/db_config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -792,7 +816,7 @@
     <entry file="file://$PROJECT_DIR$/data/tickdata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="941">
-          <caret line="164" column="48" lean-forward="true" selection-start-line="164" selection-start-column="48" selection-end-line="164" selection-end-column="48" />
+          <caret line="164" column="48" selection-start-line="164" selection-start-column="48" selection-end-line="164" selection-end-column="48" />
           <folding>
             <element signature="e#82#101#0" expanded="true" />
             <element signature="e#497#1257#0" />
@@ -804,13 +828,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/webdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="163" column="30" lean-forward="true" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
+        <state relative-caret-position="558">
+          <caret line="114" column="78" selection-start-line="114" selection-start-column="78" selection-end-line="114" selection-end-column="78" />
           <folding>
             <element signature="e#82#93#0" expanded="true" />
             <element signature="e#322#2974#0" />
             <element signature="e#3038#3703#0" />
             <element signature="e#3759#3908#0" />
+            <element signature="e#5390#6492#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2884">
+          <caret line="511" column="51" selection-start-line="511" selection-start-column="51" selection-end-line="511" selection-end-column="51" />
+          <folding>
+            <element signature="e#83#99#0" expanded="true" />
+            <element signature="e#2234#5466#0" />
+            <element signature="e#5545#10061#0" />
+            <element signature="e#11939#14839#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verification/validator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+          <folding>
+            <element signature="e#83#98#0" expanded="true" />
+            <element signature="e#20098#21946#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MarketHolidays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="188" column="7" lean-forward="true" selection-start-line="188" selection-start-column="7" selection-end-line="188" selection-end-column="7" />
+          <folding>
+            <element signature="n#market#0;n#Calf#0;n#!!top" />
+            <element signature="n#market#2;n#Calf#0;n#!!top" />
+            <element signature="n#market#4;n#Calf#0;n#!!top" />
+            <element signature="n#market#5;n#Calf#0;n#!!top" />
           </folding>
         </state>
       </provider>
