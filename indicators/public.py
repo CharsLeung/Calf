@@ -57,3 +57,28 @@ def KDJ(data, n=9, m=3):
     data.drop(['low_list', 'high_list', 'rsv'], axis=1, inplace=True)
     return data
     pass
+
+
+def QRR(data, level, N=5):
+    """
+    quantity relative ratio,与过去N个相同时间周期的成交额相比
+    :return:
+    """
+    if level == 'day':
+        data = data.sort_values('date', ascending=False)
+        data['MAn'] = data.amount.rolling(window=N).mean()
+        data['QRR'] = data.amount / data.MAn.shift(-1)
+        data.drop(['MAn'], axis=1, inplace=True)
+    if level == 'min':
+        data = data.sort_values(['date', 'time'], ascending=False)
+        data['QRR'] = 1
+        for k, w in data.iterrows():
+            _ = data[data.time == w.time].loc[(k + 1)::, ['amount']].head(N)
+            la = _.amount.mean()
+            data.at[k, ['QRR']] = w.amount / la if la != 0 else 1
+    data.QRR.fillna(1, inplace=True)
+    data = data.round({'QRR': 2})
+    return data
+
+
+
