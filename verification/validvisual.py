@@ -11,7 +11,9 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib import ticker as mticker
 from Calf.verification import FinanceIndex
+from Calf.exception import ExceptionInfo
 import datetime as dt
+
 # 中文和负号的正常显示
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
@@ -111,7 +113,8 @@ class ValidVisual:
         plt.legend()
         if save is not None:
             plt.savefig(filename=save, format='png', transparent=True)
-        plt.show()
+        else:
+            plt.show()
 
     @classmethod
     def profit_bar(cls, menu):
@@ -170,23 +173,69 @@ class ValidVisual:
         plt.legend()
         plt.show()
 
-# {'win_rate': 0.83177570093457942, 'tcs': 107, 'dcs': 79, 'avg_signals': 0.428, 'max_dd': 0.0275,
-#  'spr': 1.4224358222356874, 'cpr': 3.095061138061835, 'sharp': 8.698512319901946, 'max_pst_vol': 2,
-#  'max_pst_date': 4, 'stop_get': 0.07, 'stop_loss': 0.05, 'date': datetime.datetime(2018, 3, 15, 16, 39, 2, 17000)}
-# validvisual.finance(1)
+    @classmethod
+    def show(cls, kline_data, signals, render_path, title='', mas=[],
+             sub_title=None):
+        """
+        在K线图上标注信号的买卖点
+        :param kline_data: K线数据，可以包含均线，均线的columns
+        包含在mas中
+        :param signals: 必须包含open_date,close_date,open_price,
+        close_price,profit,type这几个字段
+        :param title:
+        :param render_path: html存储的位置
+        :param mas: eg.['ma5', 'ma10']
+        :param sub_title:
+        :return:
+        """
+        try:
+            from pyecharts import Kline, Line, Overlap, Bar
 
-# menu = pd.read_csv('C:/Users/Administrator/Desktop/SX/day/macd_day_2017_menu.csv')
-# menu['date'] = pd.to_datetime(menu.date)
-# ip = menu.copy(deep=True)
-# from Calf import ModelValidator as mv
-# import datetime as dt
-# ip = mv.index_profit(sd=dt.datetime(2017, 1, 1), ed=dt.datetime(2018, 1, 1), kline='index_day')
-# ip = ip.rename(columns={'profit': 'index_profit'})
-# menu['index_profit'] = menu.profit + 0.01
-# menu = pd.merge(menu, ip, on='date', how='outer')
-# menu = ip.merge(menu, left_on='date',right_on='date', how='outer')
-# menu.fillna(0, inplace=True)
-# menu = menu[(menu.date < dt.datetime(2017, 12, 1)) & (menu.date > dt.datetime(2017, 11, 1))]
-# menu['date'] = menu.date.dt.strftime('%Y%m%d')
-# ValidVisual.profit(menu)
-# ValidVisual.profit_bar(menu)
+            if sub_title is None:
+                lc = len(signals[signals['type'] == False])
+                sc = len(signals[signals['type'] == True])
+                lr = round(signals[signals['type'] == False].profit.sum() * 100, 2)
+                sr = round(signals[signals['type'] == True].profit.sum() * 100, 2)
+                info = '多单(数量:{} 收益:{}%) 空单(数量:{} 收益:{}%)'.format(lc, lr, sc, sr)
+            else:
+                info = sub_title
+            ml = []
+            for i, r in signals.iterrows():
+                if r.type:  # 空单，在图上以绿色表示
+                    color = '#0f0'
+                else:
+                    color = '#f00'
+                p = str(round(r.profit * 100, 2)) + '%'
+                ml.append([
+                    # {'label': {'position': 'middle'}, 'lineStyle': {'color': color}},
+                    {'name': 'open', 'coord': [r.open_date, r.open_price], 'value': p,
+                     'label': {'position': 'middle'}, 'lineStyle': {'color': color}, 'symbolSize': 5},
+                    {'name': 'open', 'coord': [r.close_date, r.close_price], 'symbolSize': 5}
+                ])
+
+            data = kline_data.sort_values('date', ascending=True)
+            kln = Kline(title=title, subtitle=info, title_pos='center')
+            kln.add('Price', data.date.tolist(),
+                    data.loc[:, ['open', 'close', 'low', 'high']].as_matrix(),
+                    tooltip_tragger="axis", tooltip_axispointer_type='cross',
+                    is_legend_show=False, is_more_utils=True, is_xaxis_show=True,
+                    # yaxis_min=int(data.low.min() - (data.high.max() - data.low.min()) / 4),
+                    is_datazoom_show=True, datazoom_range=[90, 100], xaxis_name='时间',
+                    datazoom_type='both',
+                    mark_line_raw=ml)
+
+            overlap = Overlap(width=1200, height=600)
+            overlap.add(kln)
+            for ma in mas:
+                overlap.add(
+                    Line().add(ma, data.date.tolist(), data[ma].tolist(),
+                               tooltip_tragger="axis", is_datazoom_show=True,
+                               is_legend_show=True, is_yaxis_show=False,
+                               is_xaxis_show=True)
+                )
+            
+            overlap.render(path=render_path)
+            pass
+        except Exception as e:
+            ExceptionInfo(e)
+pass

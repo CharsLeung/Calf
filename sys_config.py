@@ -103,13 +103,30 @@ class config(object):
         tree.write(project_dir + "/Calf/MarketHolidays.xml")
 
     @classmethod
-    def load_market_holidays(cls, market):
-        tree = ET.parse(project_dir + "/Calf/MarketHolidays.xml")
-        root = tree.getroot()
-        for e in root:
-            if e.attrib['id'] == market:
-                days = e.findall('day')
-                return [d.text for d in days]
+    def load_market_holidays(cls, market, by='file', **kwargs):
+        if by == 'file':
+            tree = ET.parse(project_dir + "/Calf/MarketHolidays.xml")
+            root = tree.getroot()
+            for e in root:
+                if e.attrib['id'] == market:
+                    days = e.findall('day')
+                    return [d.text for d in days]
+        else:
+            # by db
+            exchanges = {'China_Stock_A': 'SSE', 'USA_Stock': 'NYSE', 'HK_Stock': 'HKEX'}
+            if market in exchanges.keys():
+                from Calf.data import ModelData as md
+                if 'start_date' in kwargs.keys() and 'end_date' in kwargs.keys():
+                    sd = kwargs['start_date']
+                    ed = kwargs['end_date']
+                else:
+                    sd = dt.datetime.now() - dt.timedelta(days=365)
+                    ed = dt.datetime.now() + dt.timedelta(days=365)
+                hds = md().read_data('MarketCalendar', exchange=exchanges[market],
+                                     open=0, date={'$gte': sd, '$lte': ed})
+                return hds.date.tolist()
+            else:
+                Exception("not find this market: {}'s calendar data in database".format(market))
         raise Exception('not find this market id "%s"' % market)
 
     @classmethod
@@ -303,5 +320,5 @@ class config(object):
 # config.delete_holidays(market='China_Stock_A')
 # config.add_holidays(market='China_Stock_A', holidays=holidays)
 
-# print(config.load_market_holidays(market='China_Stock_A'))
+# print(config.load_market_holidays(market='China_Stock_A', by='db'))
 # config.switch_default_market('China_Stock_A')

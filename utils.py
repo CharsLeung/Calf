@@ -81,13 +81,14 @@ class trading:
     holidays = config.load_market_holidays(market=market) if market is not None else list()
     workdays = [MO, TU, WE, TH, FR]
 
-    def __init__(self, market=None):
+    def __init__(self, market=None, source='file'):
         if market is not None:
             trading.market = market
-            trading.holidays = config.load_market_holidays(market=market)
+            trading.holidays = config.load_market_holidays(market=market, by=source)
         # else:
         #     trading.market = None
         #     trading.holidays = []
+        pass
 
     @classmethod
     def trade_days(cls, start, end):
@@ -352,6 +353,10 @@ class File:
             # 如果目录存在则不创建，并提示目录已存在
             # print(path + ' 目录已存在')
             return False
+        pass
+
+    def create_file(self, path):
+        os.mknod(path)
 pass
 # Email.send_email(msgTo='leungjain@qq.com', content='hhhhhh')
 # date1 = dt.datetime(2017, 9, 29)

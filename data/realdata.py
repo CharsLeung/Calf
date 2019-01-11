@@ -8,6 +8,8 @@
 import datetime as dt
 import pandas as pd
 from urllib.request import urlopen
+
+import requests
 from pandas_datareader import data as pdr
 from Calf.exception import warning, ExceptionInfo
 
@@ -237,6 +239,37 @@ class RealData:
         """
         data = pdr.DataReader('^SPX', 'stooq', start=dt.datetime(2018, 4, 1))
         print(data)
+
+    @classmethod
+    def get_feature_data(cls, code):
+        if isinstance(code, str):
+            codes = [code]
+        elif isinstance(code, list):
+            codes = code
+        else:
+            raise TypeError('This stock code type must in (str, list)')
+        code_str = ','.join(codes)
+        code_str = code_str.replace('L8', '0')
+        url = 'https://hq.sinajs.cn/?_=1545976949893/&list=' + code_str
+        data = requests.get(url).text
+        data = data.split('\n')
+        count = 0
+        result = list()
+        for d in data:
+            d = d.split('"')
+            if len(d) >= 3:
+                d = d[1].split(',')
+                name = d[0]
+                price = d[6]
+                market = d[15]
+                date = pd.to_datetime(d[17])
+                code = codes[count]
+                count += 1
+                result.append({'name': name, 'price': price, 'date': date,
+                               'code': code, 'market': market})
+        data = pd.DataFrame(result)
+        data = data.astype({'price': 'float'})
+        return data
 
 
 pass

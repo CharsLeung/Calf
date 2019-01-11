@@ -59,21 +59,21 @@ class KlineData(object):
         :param data: must have columns of date and time
         :return:
         """
-        try:
-            # deltas = pd.DataFrame([cls.timedelta(x) for x in data['time']],
-            #  columns=['timedelta'])
-            # data['date'] = pd.eval("data['date'] + deltas['timedelta']")
-            dts = pd.DataFrame()
-            dts['date'] = data.date.astype('str')
-            dts['time'] = data.time.astype('str')
-            dts['time'] = '000' + dts.time
-            dts['time'] = dts.time.map(lambda t: t[-4:])
-            dts['datetime'] = dts.date + " " + dts.time
-            data['datetime'] = pd.to_datetime(dts.date, format='%Y-%m-%d %H%M')
-            data['date'] = data.datetime.dt.normalize()
-            return data
-        except Exception:
-            raise Exception
+        # try:
+        # deltas = pd.DataFrame([cls.timedelta(x) for x in data['time']],
+        #  columns=['timedelta'])
+        # data['date'] = pd.eval("data['date'] + deltas['timedelta']")
+        dts = pd.DataFrame()
+        dts['date'] = data.date.astype('str')
+        dts['time'] = data.time.astype('str')
+        dts['time'] = '000' + dts.time
+        dts['time'] = dts.time.map(lambda t: t[-4:])
+        dts['date'] = dts.date + " " + dts.time
+        data['datetime'] = pd.to_datetime(dts.date, format='%Y-%m-%d %H%M')
+        data['date'] = data.datetime.dt.normalize()
+        return data
+        # except Exception:
+        #     raise Exception
 
     @classmethod
     def read_one(cls, code, date, kline, **kw):
@@ -179,7 +179,10 @@ class KlineData(object):
                     data = pd.DataFrame(list(cursor))
                     data = cls.merge_time(data) if timemerge else data
                     if axis == 1:
-                        data = data.sort_values(['date'], ascending=False)
+                        if 'datetime' in data.columns:
+                            data = data.sort_values('datetime', ascending=False)
+                        else:
+                            data = data.sort_values('date', ascending=False)
                         data = data.reset_index(drop=True)
                     cursor.close()
                     return data

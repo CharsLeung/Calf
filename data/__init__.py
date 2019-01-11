@@ -109,6 +109,13 @@ def KLINE_MODEL_TABLE(location=None, dbname=None, tablename=None):
         return BaseModel('IC_day', location, dbname)
     elif tablename == 'IC_min5':
         return BaseModel('IC_min5', location, dbname)
+    # TODO(leungjain): 期货数据，2018-12-04添加
+    elif tablename == 'Futures_day':
+        return BaseModel('Futures_day', location, dbname)
+    elif tablename == 'Futures_min60':
+        return BaseModel('Futures_min60', location, dbname)
+    elif tablename == 'Futures_min30':
+        return BaseModel('Futures_min30', location, dbname)
     elif tablename == 'data_logs':
         return kline_data_update_mark('kline_data_update_mark',
                                       location, dbname)

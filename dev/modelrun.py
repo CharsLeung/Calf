@@ -14,10 +14,11 @@ import json
 import pandas as pd
 import pytz
 from Calf import project_dir
+from Calf.deprecation import deprecated
 from Calf.exception import ExceptionInfo, WarningMessage
 from Calf.utils import trading, fontcolor, sound_notice
 from Calf import CalfDateTime
-from Calf.dev import ModelAction
+from Calf.dev import ModelAction, calibration
 # from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -42,6 +43,7 @@ class ModelRun:
     相应的表中，ModelRun读到这种更新记录后就会执行ModelAction的real函数。
     有关K线更新的日志的相关信息你可以在KlineData中找到.
     """
+    calibration()
 
     @classmethod
     def open_kline_update_log(cls):
@@ -71,6 +73,7 @@ class ModelRun:
             return self
 
     @classmethod
+    @deprecated("function 'KScheduler' will be removed in next version")
     def KScheduler(cls, action, tz=None, deep_sleep=list()):
         """
         适用于A股的信号采集实时任务，适用于跨时区任务
@@ -489,10 +492,11 @@ class ModelRun:
                             except Exception as ep:
                                 ExceptionInfo(ep)
 
-                        d = tdy + dt.timedelta(hours=edt.hour, minutes=edt.minute, seconds=edt.second)
+                        d = tdy + dt.timedelta(hours=edt.hour, minutes=edt.minute,
+                                               seconds=edt.second)
                         nsds.append(d + dt.timedelta(days=1))
-                        scheduler.add_job(func=action_end, trigger=DateTrigger(d), id='action_end', timezone=tz,
-                                          args=[kwargs])
+                        scheduler.add_job(func=action_end, trigger=DateTrigger(d),
+                                          id='action_end', timezone=tz, args=[kwargs])
                     print(fontcolor.F_GREEN + '-' * 80)
                     print('Note:enter Calf real task and mount these tasks:')
                     scheduler.print_jobs()

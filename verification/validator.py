@@ -49,6 +49,8 @@ class ModelValidator:
         'max_pst_days': 1,  # 最大持仓天数
         'max_pst_mins': 0,  # 最大持有分钟数，最终的持有时间将是天数+分钟数
         'lever': 1,  # 杠杆率
+        'init_asset': 1,  # 初始资金
+        'balance': 1,  # 余额
     }
     # 日内支持验证的时间点(适用于A股)，其他市场的日内回测需要重置这些变量
     min60 = [1030, 1130, 1400, 1500]
@@ -75,8 +77,8 @@ class ModelValidator:
     kd = KlineData(kline_data_location, kline_data_dbname)
 
     @classmethod
-    def VerifyFrame(cls, data, kline, func=None, start_date=None, end_date=None,
-                    ugly=list(), ntf=False):
+    def VerifyFrame(cls, data, kline, func=None, start_date=None,
+                    end_date=None, ugly=list(), ntf=False):
         """
         :param ntf: 按自然日[False]计算持有时间或交易日[True]持有时间
         :param ugly: 用户自定义的非交易时间，datetime类型的数组
@@ -507,7 +509,8 @@ class ModelValidator:
                        stop_get=cls.model_param['stop_get'],
                        stop_loss=cls.model_param['stop_loss'],
                        lever=cls.model_param['lever'],
-                       start_date=cls.sd, end_date=cls.ed, date=datetime.datetime.now())
+                       start_date=cls.sd, end_date=cls.ed,
+                       date=datetime.datetime.now())
             goods['stop_loss'] = cls.model_param['stop_loss']
             goods['stop_get'] = cls.model_param['stop_get']
             return dit, menu, goods
@@ -549,12 +552,104 @@ class ModelValidator:
                        stop_get=cls.model_param['stop_get'],
                        stop_loss=cls.model_param['stop_loss'],
                        lever=cls.model_param['lever'],
-                       start_date=cls.sd, end_date=cls.ed, date=datetime.datetime.now())
+                       start_date=cls.sd, end_date=cls.ed, 
+                       date=datetime.datetime.now())
             details['stop_loss'] = cls.model_param['stop_loss']
             details['stop_get'] = cls.model_param['stop_get']
             return dit, menu
         except Exception as e:
             raise e
+
+    @classmethod
+    def cash_flow(cls, details, init_asset=1, fee=0, margin=1,
+                  fee_type='rate', min_fee=0, tax=0, multiple=1):
+        """
+        根据ModelValidator回测框架返回的交易记录明细details（这是按资金
+        比例就算收益得出的交易明细），cash_flow函数将把这个计算方式调整以
+        初始资金-模型余额的形式，
+        :param multiple: 交易总价款/单价=股数，股数/multiple=手数
+        :param tax: 印花税率，双向收费时翻倍，期货没有印花税
+        :param fee: 交易费用额（按次交易时有效），或交易费率（按比例计算），
+        另外，双向收费的注意fee应加倍
+        :param min_fee: 按比例计算手续费的最低限额
+        :param fee_type: 手续费的计算方法，分为两种：1.按比例计算，例如
+        A股常见的计算方式。2.按交易频次计算，例如中国期货。可选值：rate bout
+        :param margin: 保证金比例
+        :param details:
+        :param init_asset:
+        :return:
+        """
+        try:
+            Bsp = 0     # 记录单利形式下的累计收益
+            spb = init_asset
+            cpb = init_asset
+            details = details.sort_values('open_date', ascending=True)
+            details['spb'] = np.nan
+            details['cpb'] = np.nan
+            details['sp'] = np.nan
+            details['cp'] = np.nan
+            details['svol'] = np.nan
+            details['cvol'] = np.nan
+            details['cash_flow'] = np.nan
+            simple_fees = 0
+            compound_fees = 0
+
+            def get_fee(amount=0, volumes=0):
+                # amount -> 交易总价款
+                # volumes -> 手
+                if fee_type == 'rate':
+                    f = amount * fee
+                    f = min_fee if f < min_fee else f
+                    f = f + amount * tax
+
+                if fee_type == 'bout':
+                    f = int(volumes) * fee
+                return f
+
+            for i, r in details.iterrows():
+                # 总价款->股->手
+                p = r.open_price * multiple  # 每手的价值
+                pm = p * margin  # 每手需要的保证金
+
+                # 如果spb不够支付一手的保证金，则利用Bsp补偿
+                if spb < pm:
+                    spb = pm if spb + Bsp >= pm else spb
+                # 计算spb能够支付多少手的保证金
+                sv = int(spb / pm)
+                sa = p * sv
+                # sv = ((spb * r.Rr * lever) // r.open_price
+                #        ) // multiple
+                # sa = sv * r.open_price * multiple
+                sf = get_fee(sa, sv)
+                sp = sa * r.profit - sf
+                spb += sp
+                spb = 0 if spb <= 0 else spb
+                details.at[i, ['sp', 'spb', 'svol']] = sp, spb, sv
+                spb = init_asset if spb > init_asset else spb
+                simple_fees += sf
+                Bsp += sp
+                details.at[i, ['cash_flow']] = Bsp
+
+                # cv = ((cpb * r.Rr * lever) // r.open_price
+                #        ) // multiple
+                # ca = cv * r.open_price * multiple
+                cv = int(cpb / pm)
+                ca = p * cv
+                cf = get_fee(ca, cv)
+                cp = ca * r.profit - cf
+                cpb += cp
+                cpb = 0 if cpb < 0 else cpb
+                details.at[i, ['cp', 'cpb', 'cvol']] = cp, cpb, cv
+                compound_fees += cf
+
+            rep = dict(simple_profit_balance=init_asset + details.sp.sum(),
+                       compound_profit_balance=init_asset + details.cp.sum(),
+                       simple_fees=simple_fees, compound_fees=compound_fees)
+            return rep, details
+        except Exception as e:
+            ExceptionInfo(e)
+            return None, details
+        pass
 
     @classmethod
     def verify_min(cls, optimal_choice=None, order_close=None):
@@ -587,7 +682,8 @@ class ModelValidator:
                     # 根据需要购买的数量选择购买的股票
                     buys = select_func(bt, int(need_count))
                     # 购买
-                    g = pd.DataFrame([cls.order_open(dict(buys.loc[i]), order_close) for i in buys.index],
+                    g = pd.DataFrame([cls.order_open(dict(buys.loc[i]),
+                                                     order_close) for i in buys.index],
                                      columns=cls.cols)
                     # 购买过程中可能有购买失败的
                     g.dropna(axis=0, inplace=True)
@@ -635,14 +731,17 @@ class ModelValidator:
             cpr = (menu.profit.mean() + 1) ** dcs - 1  # 复利，估计数
             apr = fi.annualized_returns(menu.profit.tolist())  # 年化收益
             sharp = fi.sharp(menu.profit.tolist())
-            dit = dict(win_rate=win_rate, tcs=tcs, dcs=dcs, avg_signals=avg_signals,
+            dit = dict(win_rate=win_rate, tcs=tcs, dcs=dcs,
+                       avg_signals=avg_signals,
                        max_dd=max_dd, spr=spr, cpr=cpr,
-                       apr=apr, sharp=sharp, max_pst_vol=cls.model_param['max_pst_vol'],
+                       apr=apr, sharp=sharp,
+                       max_pst_vol=cls.model_param['max_pst_vol'],
                        max_pst_date=cls.model_param['max_pst_days'],
                        stop_get=cls.model_param['stop_get'],
                        stop_loss=cls.model_param['stop_loss'],
                        lever=cls.model_param['lever'],
-                       start_date=cls.sd, end_date=cls.ed, date=datetime.datetime.now())
+                       start_date=cls.sd, end_date=cls.ed,
+                       date=datetime.datetime.now())
             goods['stop_loss'] = cls.model_param['stop_loss']
             goods['stop_get'] = cls.model_param['stop_get']
             return dit, menu, goods
@@ -654,7 +753,8 @@ class ModelValidator:
         """
         暴力参数求解
         :param order_close:
-        :param param_table:包含max_pst_vol,max_pst_days,stop_get,stop_loss交易参数组合
+        :param param_table:包含max_pst_vol,max_pst_days,
+        stop_get,stop_loss交易参数组合
         的参数表，这是一个df
         :param on:何种级别的回测
         :return:
@@ -666,9 +766,12 @@ class ModelValidator:
             try:
                 # p = dict(max_pst_vol=r.max_pst_vol, max_pst_days=r.max_pst_days,
                 #  stop_get=r.stop_get, stop_loss=r.stop_loss)
-                cls.modelparammodify(max_pst_vol=r.max_pst_vol, max_pst_days=r.max_pst_days,
-                                     stop_get=r.stop_get, stop_loss=r.stop_loss)
-                dit, mus, tdr = cls.verify_day(order_close) if on == 'day' else cls.verify_min(order_close)
+                cls.modelparammodify(max_pst_vol=r.max_pst_vol,
+                                     max_pst_days=r.max_pst_days,
+                                     stop_get=r.stop_get,
+                                     stop_loss=r.stop_loss)
+                dit, mus, tdr = cls.verify_day(order_close) if on == 'day' \
+                    else cls.verify_min(order_close)
                 rp = dict(dit, **r)
             except Exception as e:
                 ExceptionInfo(e)
