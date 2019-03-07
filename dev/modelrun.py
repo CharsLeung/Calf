@@ -9,6 +9,7 @@ import threading
 import time
 import datetime as dt
 import json
+import warnings
 # import re
 # from timeit import timeit
 import pandas as pd
@@ -43,7 +44,6 @@ class ModelRun:
     相应的表中，ModelRun读到这种更新记录后就会执行ModelAction的real函数。
     有关K线更新的日志的相关信息你可以在KlineData中找到.
     """
-    calibration()
 
     @classmethod
     def open_kline_update_log(cls):
@@ -247,6 +247,12 @@ class ModelRun:
         :return:
         """
         try:
+            warnings.warn(
+                "The function  will be deprecated\n"
+                "Please use \033[91m DScheduler\033[0m instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
             def merge(h, m):
                 return pd.Timedelta(hours=h, minutes=m)
 
@@ -400,6 +406,9 @@ class ModelRun:
         from apscheduler.triggers.date import DateTrigger
         from apscheduler.triggers.interval import IntervalTrigger
         from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
+
+        calibration()
+        
         while 1:
             # scheduler = BlockingScheduler(daemonic=False)
             # crt = CalfDateTime.now(tz, offset)

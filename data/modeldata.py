@@ -6,10 +6,10 @@
 @time: 2017/11/23 14:24
 """
 import datetime
-
 import pandas as pd
 import numpy as np
 
+from bson import ObjectId
 from Calf.data import MODEL_TABLE, BaseModel
 from Calf.base.query_str_analyzer import analyzer
 from Calf.exception import MongoIOError, FileError, ExceptionInfo, \
@@ -91,14 +91,17 @@ class ModelData(object):
             raise e
 
     # @classmethod
-    def insert_data(self, table_name, data):
+    def insert_data(self, table_name, data, add_id=False):
         """
         一个简易的数据插入接口
         :param table_name:
         :param data:
+        :param add_id:
         :return:
         """
         try:
+            if add_id:
+                data['_id'] = data.index.map(lambda x: ObjectId())
             if len(data):
                 d = data.to_dict(orient='records')
                 BaseModel(table_name, self.location,
@@ -106,14 +109,17 @@ class ModelData(object):
         except Exception:
             raise MongoIOError('Failed with insert data by MongoDB')
 
-    def insert_one(self, table_name, data):
+    def insert_one(self, table_name, data, add_id=False):
         """
         insert one record
         :param table_name:
         :param data: a dict
+        :param add_id:
         :return:
         """
         try:
+            if add_id:
+                data['_id'] = ObjectId()
             BaseModel(table_name, self.location,
                       self.dbname).insert(data)
         except Exception:
@@ -190,7 +196,8 @@ class ModelData(object):
             r = BaseModel(table_name, self.location,
                           self.dbname).update_batch(condition, kw)
             return r
-        except Exception:
+        except Exception as e:
+            ExceptionInfo(e)
             raise MongoIOError('Failed with update by MongoDB')
 
     # @classmethod

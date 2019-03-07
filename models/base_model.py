@@ -55,20 +55,10 @@ class BaseModel(object):
         操作完成后返回 insert 成功的对象
         """
         _ = kwargs if len(kwargs) else args[0]
-        _['classtype'] = self.tablename
+        # _['classtype'] = self.tablename
         # 去掉 _id 这个特殊的字段
-        if '_id' in _:
-            _['_id'] = ObjectId()
-            # del _['_id']
-
-        # m = cls()
-        # for f in fields:
-        #     k, t, v = f
-        #     if k in _:
-        #         setattr(m, k, t(_[k]))
-        #     else:
-        #         # 设置默认值
-        #         setattr(m, k, v)
+        # if '_id' in _:
+        #     _['_id'] = ObjectId()
 
         m = self.mc.insert_one(_)
         return m
@@ -91,11 +81,10 @@ class BaseModel(object):
             _ = args
 
         result = []
-        for i in _:
-            if '_id' in i:
-                i['_id'] = ObjectId()
-                # del i['_id']
-            i['classtype'] = self.tablename.lower()
+        # for i in _:
+        #     if '_id' in i:
+        #         i['_id'] = ObjectId()
+        #     i['classtype'] = self.tablename.lower()
         try:
             if len(_):
                 result = self.mc.insert_many(_)

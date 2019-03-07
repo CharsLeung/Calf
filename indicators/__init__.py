@@ -5,4 +5,12 @@
 @author: LeungJain
 @time: 2018/3/21 9:48
 """
-from .public import MACD, KDJ, QRR, MACD2
+hard_dependencies = ("numba")
+missing_dependencies = []
+
+for dependency in hard_dependencies:
+    try:
+        __import__(dependency)
+    except ImportError as e:
+        missing_dependencies.append(dependency)
+from .public import *

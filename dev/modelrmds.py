@@ -7,7 +7,9 @@
 """
 import socket
 import sys
+import threading
 import datetime as dt
+
 from Calf.exception import ExceptionInfo
 from Calf.utils import fontcolor
 from Calf.net import MODEL_PROBE, STATUS
@@ -58,7 +60,8 @@ class recsys:
             data = eval(data)
             try:
                 conn.sendall(bytes(str(STATUS['success']), encoding='utf-8'))
-                action.rmds(data)
+                # action.rmds(data)
+                threading.Thread(target=action.rmds, args=(data,)).start()
             except Exception as e:
                 ExceptionInfo(e)
             finally:

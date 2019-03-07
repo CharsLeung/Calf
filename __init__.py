@@ -24,19 +24,18 @@ from os.path import abspath, dirname
 project_dir = dirname(dirname(abspath(__file__))) # Calf项目的安装路径
 
 # 检查运行Calf的平台是否为python3
-import platform
-pv = platform.python_version()
-if int(pv[0]) >= 3:
-    pass
-else:
-    raise Warning('Calf only support python3')
+# import platform
+# pv = platform.python_version()
+# if int(pv[0]) >= 3:
+#     pass
+# else:
+#     raise Warning('Calf only support python3')
 
 # Calf用到了这些依赖(可能还包括其他的)，可能用户没有
 # 建议开发人员首先安装Anaconda3平台
 # TODO(leungjain): pygame包以及相关功能被暂时移除
 # TODO(leungjian): pandas_datareader提供的有关读数据的功能有可能被替换
-hard_dependencies = ("pandas", "pandas_datareader", "pymongo",
-                     "business_calendar", "pytz", "apscheduler")
+hard_dependencies = ("pandas", "numpy", "pytz")
 missing_dependencies = []
 
 for dependency in hard_dependencies:

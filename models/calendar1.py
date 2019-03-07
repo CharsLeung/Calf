@@ -75,7 +75,7 @@ class Calendar(BaseModel):
             sd = cls.recent(date, False)
         else:
             sd = cls.recent(date)
-        td = Calendar().query(num=sd['num'] + offset)[0]
+        td = Calendar().query({'num':sd['num'] + offset})[0]
         return td
 
     @classmethod

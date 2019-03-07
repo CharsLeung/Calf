@@ -22,7 +22,7 @@ K线数据来操作的
 # "XDXR_day": "5a93af2fae17bef65467952a", "datetime": "2018-03-09 14:52:48"}的json文件
 
 from Calf.models.base_model import BaseModel
-from Calf.exception import MongoIOError
+from Calf.exception import MongoIOError, WarningMessage
 from Calf.models import DayXDXR, Day, Minute, SellList, signal, MonthIndex, WeekIndex, DayIndex, \
     MintueIndex
 from Calf.models.asset import Asset
@@ -31,6 +31,15 @@ from Calf.models.order import Orders, OrdersHis, RmdsHis
 from Calf.models.self_models import TradeMenu, ModelFinanceIndex, Naughtiers
 from Calf.models.zjf_model import Risk_and_Position, kline_data_update_mark, Risk, Position, \
     Inflexion, Buy_Point
+
+hard_dependencies = ("pandas_datareader")
+missing_dependencies = []
+
+for dependency in hard_dependencies:
+    try:
+        __import__(dependency)
+    except ImportError as e:
+        missing_dependencies.append(dependency)
 
 
 def KLINE_MODEL_TABLE(location=None, dbname=None, tablename=None):
@@ -120,8 +129,9 @@ def KLINE_MODEL_TABLE(location=None, dbname=None, tablename=None):
         return kline_data_update_mark('kline_data_update_mark',
                                       location, dbname)
     else:
+        return BaseModel(tablename, location, dbname)
         info = 'not find this "%s" in model list' % tablename
-        raise ValueError(info)
+        print(WarningMessage(info))
 
 
 def MODEL_TABLE(location=None, dbname=None, tablename=None):

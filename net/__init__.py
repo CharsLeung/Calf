@@ -28,6 +28,7 @@ TASK_CODE = {
     'to_orders': 101,
     'open_orders': 102,
     'close_orders': 103,
+    'serialized_orders': 104, # 直传orders
     'repair_orders': -101,
     'profit_probing': 200,
     'close': 400

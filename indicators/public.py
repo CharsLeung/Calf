@@ -112,5 +112,110 @@ def QRR(data, level, N=5):
     data = data.round({'QRR': 2})
     return data
 
+def MAS(data, base='close', mas=[], ascending=False):
+    """
+    计算一系列均线
+    :param data:
+    :param mas: eg. [5, 10, 20]
+    :param ascending:
+    :return:
+    """
+    if ascending:
+        for ma in mas:
+            data['ma%s' % ma] = data[base].rolling(window=ma).mean().round(2)
+    else:
+        data = data[::-1]
+        for ma in mas:
+            data['ma%s' % ma] = data[base].rolling(window=ma).mean().round(2)
+        data = data[::-1]
+    return data
+
+def DMAS(data, mas):
+    """
+    均线离差和，短均线-长均线
+    :param data:
+    :param mas:
+    :return:
+    """
+    mas = sorted(mas)
+    mas = ['ma%s' % ma for ma in mas]
+
+    def f(r):
+        _ = .0
+        for i in range(len(mas) - 1, 0, -1):
+            # trend of long: ma short > long
+            _ += (r[mas[i - 1]] - r[mas[i]])
+        return _
+
+    data['DMAS'] = data.apply(lambda r: f(r), axis=1)
+    data = data.round({'DMAS': 2})
+    return data
+
+def AMAS(data, mas, ascending=False):
+    """
+    均线的角度：一根K线的涨跌幅
+    :param data:
+    :param mas:
+    :param ascending: data的序
+    :return:
+    """
+    mas = ['ma%s' % ma for ma in mas]
+    if ascending:
+        for ma in mas:
+            data['a%s' % ma] = (data[ma] / data[ma].shift(1) - 1).round(4)
+    else:
+        for ma in mas:
+            data['a%s' % ma] = (data[ma] / data[ma].shift(-1) - 1).round(4)
+    return data
+
+def MinMaxScaler(data, on, window, ascending=False):
+    """
+    特殊情况下的时间序列归一化
+    :param data:
+    :param on: eg. 'close' or ['close', 'open']
+    :param window:
+    :return:
+    """
+    if isinstance(on, str):
+        on = [on]
+    elif isinstance(on, list):
+        pass
+    else:
+        raise TypeError("this type of param 'on' must in (str, list).")
+    if ascending:
+        for col in on:
+            data[col] = (data[col] - data[col].rolling(window).min()) \
+                        / (data[col].rolling(window).max() - data[col].rolling(window).min())
+    else:
+        data = data[::-1]
+        for col in on:
+            data[col] = (data[col] - data[col].rolling(window).min()) \
+                        / (data[col].rolling(window).max() - data[col].rolling(window).min())
+        data = data[::-1]
+    return data
+
+def StandardScaler(data, on, window, ascending=False):
+    """
+        特殊情况下的时间序列标准化
+        :param data:
+        :param on: eg. 'close' or ['close', 'open']
+        :param window:
+        :return:
+    """
+    if isinstance(on, str):
+        on = [on]
+    elif isinstance(on, list):
+        pass
+    else:
+        raise TypeError("this type of param 'on' must in (str, list).")
+    if ascending:
+        for col in on:
+            data[col] = (data[col] - data[col].rolling(window).mean()) / data[col].rolling(window).std()
+    else:
+        data = data[::-1]
+        for col in on:
+            data[col] = (data[col] - data[col].rolling(window).mean()) / data[col].rolling(window).std()
+        data = data[::-1]
+    return data
 
 
