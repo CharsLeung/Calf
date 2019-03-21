@@ -36,7 +36,7 @@ class KlineData(object):
     def field(cls, table_name, field_name, filter=None):
         """
         Query the value of a field in the database
-        :param filter:
+        :param filter: dict
         :param table_name: the database's table name
         :param field_name: the table's field name
         :return: all values in database

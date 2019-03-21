@@ -81,10 +81,10 @@ class trading:
     holidays = config.load_market_holidays(market=market) if market is not None else list()
     workdays = [MO, TU, WE, TH, FR]
 
-    def __init__(self, market=None, source='file'):
+    def __init__(self, market=None, source='file', **kwargs):
         if market is not None:
             trading.market = market
-            trading.holidays = config.load_market_holidays(market=market, by=source)
+            trading.holidays = config.load_market_holidays(market=market, by=source, **kwargs)
         # else:
         #     trading.market = None
         #     trading.holidays = []

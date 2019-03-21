@@ -116,11 +116,13 @@ class config(object):
             exchanges = {'China_Stock_A': 'SSE', 'USA_Stock': 'NYSE', 'HK_Stock': 'HKEX'}
             if market in exchanges.keys():
                 from Calf.data import ModelData as md
-                if 'start_date' in kwargs.keys() and 'end_date' in kwargs.keys():
+                if 'start_date' in kwargs.keys():
                     sd = kwargs['start_date']
-                    ed = kwargs['end_date']
                 else:
                     sd = dt.datetime.now() - dt.timedelta(days=365)
+                if 'end_date' in kwargs.keys():
+                    ed = kwargs['end_date']
+                else:
                     ed = dt.datetime.now() + dt.timedelta(days=365)
                 hds = md().read_data('MarketCalendar', exchange=exchanges[market],
                                      open=0, date={'$gte': sd, '$lte': ed})

@@ -42,24 +42,36 @@ class RealData:
     @classmethod
     def get_stock_data(cls, stock_code):
         """
-        读取一止股票的实时数据
+        读取一只股票的实时数据
         :param stock_code:
         :return:
         """
-        _code = RealData.market_judge(stock_code)
-        html = urlopen('http://hq.sinajs.cn/list={}'.format(_code)).read()
-        data_l = html.decode('gbk').split('\n')
-        i = 0
-        res = dict()
-        for data in data_l:
-            if len(data):
-                d = data.split('="')
-                key = stock_code
-                i = i + 1
-                res[key] = d[1][:-2].split(',')
+        try:
+            _code = RealData.market_judge(stock_code)
+            html = urlopen('http://hq.sinajs.cn/list={}'.format(_code)).read()
+            data_l = html.decode('gbk').split('\n')
+            i = 0
+            res = []
+            for data in data_l:
+                if len(data):
+                    d = data.split('="')
+                    res = d[1][:-2].split(',')
 
-        # print(res, len(res['601088']))
-        return res
+            # print(res, len(res['601088']))
+            _ = dict()
+            for k in RealData.columns.keys():
+                if RealData.columns[k] not in ['stock_name', 'datetime', 'time']:
+                    v = float(res[k])
+                else:
+                    v = res[k]
+                _[RealData.columns[k]] = v
+            _['datetime'] = dt.datetime.strptime(
+                _['datetime'] + ' ' + _['time'], '%Y-%m-%d %H:%M:%S'
+            )
+            return _
+        except Exception as e:
+            print(e)
+            return {}
 
     @classmethod
     def get_stocks_data(cls, stocks_code):
@@ -282,3 +294,4 @@ pass
 # end_date = datetime(t.year, t.month, t.day, 4)
 # ed = int(time.mktime(end_date.timetuple()))
 # RealData.yahoo_stock_data('DJI', '')
+# print(RealData.get_stock_data('000001'))

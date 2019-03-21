@@ -164,9 +164,9 @@ class ModelData(object):
 
     def aggregate(self, table_name, pipeline):
         """
-        
         :param table_name:
-        :param pipeline:
+        :param pipeline: a list, 每一个元素相当于一个管道操作，常见的操作包括
+        匹配('$match')、属性域选择('$project')
         :return: 
         """
         try:

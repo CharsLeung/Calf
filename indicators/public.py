@@ -112,9 +112,11 @@ def QRR(data, level, N=5):
     data = data.round({'QRR': 2})
     return data
 
+
 def MAS(data, base='close', mas=[], ascending=False):
     """
     计算一系列均线
+    :param base:
     :param data:
     :param mas: eg. [5, 10, 20]
     :param ascending:
@@ -129,6 +131,7 @@ def MAS(data, base='close', mas=[], ascending=False):
             data['ma%s' % ma] = data[base].rolling(window=ma).mean().round(2)
         data = data[::-1]
     return data
+
 
 def DMAS(data, mas):
     """
@@ -151,6 +154,7 @@ def DMAS(data, mas):
     data = data.round({'DMAS': 2})
     return data
 
+
 def AMAS(data, mas, ascending=False):
     """
     均线的角度：一根K线的涨跌幅
@@ -168,9 +172,11 @@ def AMAS(data, mas, ascending=False):
             data['a%s' % ma] = (data[ma] / data[ma].shift(-1) - 1).round(4)
     return data
 
+
 def MinMaxScaler(data, on, window, ascending=False):
     """
     特殊情况下的时间序列归一化
+    :param ascending:
     :param data:
     :param on: eg. 'close' or ['close', 'open']
     :param window:
@@ -194,9 +200,11 @@ def MinMaxScaler(data, on, window, ascending=False):
         data = data[::-1]
     return data
 
+
 def StandardScaler(data, on, window, ascending=False):
     """
         特殊情况下的时间序列标准化
+        :param ascending:
         :param data:
         :param on: eg. 'close' or ['close', 'open']
         :param window:
@@ -217,5 +225,3 @@ def StandardScaler(data, on, window, ascending=False):
             data[col] = (data[col] - data[col].rolling(window).mean()) / data[col].rolling(window).std()
         data = data[::-1]
     return data
-
-
