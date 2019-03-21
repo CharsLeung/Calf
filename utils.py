@@ -84,7 +84,9 @@ class trading:
     def __init__(self, market=None, source='file', **kwargs):
         if market is not None:
             trading.market = market
-            trading.holidays = config.load_market_holidays(market=market, by=source, **kwargs)
+            trading.holidays = config.load_market_holidays(
+                market=market, by=source, **kwargs
+            )
         # else:
         #     trading.market = None
         #     trading.holidays = []
