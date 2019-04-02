@@ -82,6 +82,13 @@ class trading:
     workdays = [MO, TU, WE, TH, FR]
 
     def __init__(self, market=None, source='file', **kwargs):
+        """
+        关于市场节假日的相关方法
+        :param market: 'China_Stock_A':'SSE','USA_Stock':'NYSE','HK_Stock':'HKEX'
+        :param source: 节假日或交易日信息存储的位置：file->本地xml文件，db->数据库
+        :param kwargs: start_date end_date，获取节假日信息的前沿 后沿，避免加载大量的
+        节假日数据
+        """
         if market is not None:
             trading.market = market
             trading.holidays = config.load_market_holidays(

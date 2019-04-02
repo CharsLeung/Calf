@@ -5,11 +5,11 @@
 @author: LeungJain
 @time: 2018/3/30 13:15
 """
-from Calf import project_dir
-import re
 import json
 import datetime as dt
 import xml.etree.ElementTree as ET
+
+from Calf import project_dir
 
 
 class config(object):
@@ -313,6 +313,9 @@ class config(object):
             file.close()
 
 
+pass
+
+
 # config.add_holiday()
 # d = config.load_market_info('China_stock_A')
 # print(d)
@@ -324,3 +327,97 @@ class config(object):
 
 # print(config.load_market_holidays(market='China_Stock_A', by='db'))
 # config.switch_default_market('China_Stock_A')
+
+
+def f1():
+    import pandas as pd
+    from Calf.data import WebData as wd
+
+    data = wd.Stooq_index_data('SPX')
+    # print(data.head())
+    # print(data.tail())
+    data = data[data.date >= dt.datetime(1900, 1, 1)]
+
+    tdr = data.loc[:, ['date']]
+    tdr['open'] = 1
+
+    ald = pd.DataFrame()
+    ald['date'] = pd.date_range(data.date.min(), data.date.max())
+
+    days = pd.merge(ald, tdr, on=['date'], how='outer')
+    days.fillna(0, inplace=True)
+
+    d3 = pd.DataFrame([])
+    d3['date'] = pd.to_datetime(config.load_market_holidays('USA_Stock'))
+    d3 = d3[d3.date > data.date.max()]
+    d3['open'] = 0
+
+    d2 = pd.DataFrame([])
+    d2['date'] = pd.date_range(
+        data.date.max() + dt.timedelta(days=1),
+        d3.date.max()
+    )
+
+    d3 = pd.merge(d2, d3, how='outer', on=['date'])
+    d3.fillna(1, inplace=True)
+    for i, r in d3.iterrows():
+        if r.date.weekday() in (5, 6):
+            d3.at[i, ['open']] = 0
+
+    days = pd.concat([days, d3])
+    days['exchange'] = 'NYSE'
+    days['open'] = days.open.astype('int')
+
+    # from Calf.data import ModelData as md
+    #
+    # md().insert_data('MarketCalendar', days)
+    pass
+
+
+# f1()
+
+def f2():
+    import pandas as pd
+    from Calf.data import WebData as wd
+
+    data = wd.Stooq_index_data('HSI')
+    # print(data.head())
+    # print(data.tail())
+    data = data[data.date >= dt.datetime(1900, 1, 1)]
+
+    tdr = data.loc[:, ['date']]
+    tdr['open'] = 1
+
+    ald = pd.DataFrame()
+    ald['date'] = pd.date_range(data.date.min(), data.date.max())
+
+    days = pd.merge(ald, tdr, on=['date'], how='outer')
+    days.fillna(0, inplace=True)
+
+    d3 = pd.DataFrame([])
+    d3['date'] = pd.to_datetime(config.load_market_holidays('HK_Stock'))
+    d3 = d3[d3.date > data.date.max()]
+    d3['open'] = 0
+
+    d2 = pd.DataFrame([])
+    d2['date'] = pd.date_range(
+        data.date.max() + dt.timedelta(days=1),
+        d3.date.max()
+    )
+
+    d3 = pd.merge(d2, d3, how='outer', on=['date'])
+    d3.fillna(1, inplace=True)
+    for i, r in d3.iterrows():
+        if r.date.weekday() in (5, 6):
+            d3.at[i, ['open']] = 0
+
+    days = pd.concat([days, d3])
+    days['exchange'] = 'HKEX'
+    days['open'] = days.open.astype('int')
+
+    # from Calf.data import ModelData as md
+    #
+    # md().insert_data('MarketCalendar', days)
+    pass
+
+# f2()

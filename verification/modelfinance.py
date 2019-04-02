@@ -86,7 +86,7 @@ class FinanceIndex:
         return VR
 
     @classmethod
-    def sharp(cls, profit_list):
+    def sharp(cls, profit_list, risk_free=None):
         """
         夏普比率：可简单理解为每承受一单位风险，会产生多少的超额报酬,
         传入的收益列表是不累加的，单次的，表示单次交易与风险的关系
@@ -94,7 +94,8 @@ class FinanceIndex:
         :return:
         """
         Rp = np.array(profit_list)
-        Rp -= cls.Model_Param['RISK_FREE'] / 252.0
+        rf = risk_free if risk_free is not None else cls.Model_Param['RISK_FREE']
+        Rp -= rf / 252.0
         Sharp = math.sqrt(Rp.size) * Rp.mean() / Rp.std()
 
         # LENp = len(profit)

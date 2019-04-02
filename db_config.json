@@ -50,8 +50,11 @@
     "replicaset": "test_rs"
   },
   "shard_a": {
-    "host": "192.168.10.224:40000",
-    "dbname": "ttt"
+    "host": "192.168.10.101:57075",
+    "dbname": "big-data",
+    "username": "zjf",
+    "password": "zjf123",
+    "dbauth": "admin"
   },
   "market_a_server": {
     "host": "119.147.164.60",
