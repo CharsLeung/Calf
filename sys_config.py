@@ -420,4 +420,54 @@ def f2():
     # md().insert_data('MarketCalendar', days)
     pass
 
+
 # f2()
+
+def f3():
+    import pandas as pd
+    from Calf.data import WebData as wd
+
+    # data = wd.Stooq_index_data('SHC')
+    data = wd.yahoo_stock_data('000001.SS', dt.datetime(1980, 1, 1), dt.datetime(2019, 4, 8))
+    # print(data.head())
+    # print(data.tail())
+    data = data[data.date >= dt.datetime(1900, 1, 1)]
+
+    tdr = data.loc[:, ['date']]
+    tdr['open'] = 1
+
+    ald = pd.DataFrame()
+    ald['date'] = pd.date_range(data.date.min(), data.date.max())
+
+    days = pd.merge(ald, tdr, on=['date'], how='outer')
+    days.fillna(0, inplace=True)
+
+    d3 = pd.DataFrame([])
+    d3['date'] = pd.to_datetime(config.load_market_holidays('China_Stock_A'))
+    d3 = d3[d3.date > data.date.max()]
+    d3['open'] = 0
+
+    d2 = pd.DataFrame([])
+    d2['date'] = pd.date_range(
+        data.date.max() + dt.timedelta(days=1),
+        d3.date.max()
+    )
+
+    d3 = pd.merge(d2, d3, how='outer', on=['date'])
+    d3.fillna(1, inplace=True)
+    for i, r in d3.iterrows():
+        if r.date.weekday() in (5, 6):
+            d3.at[i, ['open']] = 0
+
+    days = pd.concat([days, d3])
+    days['exchange'] = 'SSE'
+    days['open'] = days.open.astype('int')
+
+    from Calf.data import ModelData as md
+
+    md().insert_data('MarketCalendar', days)
+    md(location='server').insert_data('MarketCalendar', days)
+    pass
+
+
+# f3()

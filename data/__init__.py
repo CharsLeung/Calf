@@ -197,6 +197,7 @@ def SELF_TABLE(location=None, dbname=None, tablename=None):
 from .realdata import RealData
 from .basedata import BaseData
 from .klinedata import KlineData
+from .klinedatagenerator import KlineDataGenerator
 from .signaldata import SignalData
 from .orderdata import OrderData
 from .modeldata import ModelData

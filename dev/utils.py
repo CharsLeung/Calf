@@ -86,4 +86,21 @@ def read_images(path, reshape=None, start=None, end=None):
             # 图片名：label信息可能存储在这当中
             labels.append(im.split('\\')[-1])
         pass
-    return np.asarray(images, np.float32), np.asarray(labels)
+    return np.asarray(images, np.uint8), np.asarray(labels)
+
+
+def read_image(path, reshape):
+    """
+
+    :param path:
+    :param reshape:
+    :return:
+    """
+    for im in glob.glob(path):
+        img = io.imread(im)
+        if reshape is not None:
+            img = transform.resize(img, reshape)
+    pass
+
+# i = io.imread('F:\MR\\bottle\\0402\瓶号：807,相机3, 第 1 张 边高,5.17mm (＞1.07mm)_0.bmp')
+pass
