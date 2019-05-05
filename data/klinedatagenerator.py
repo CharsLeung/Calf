@@ -148,6 +148,7 @@ class KlineDataGenerator(KlineData):
                     kline=self.kline,
                     axis=0,
                     timemerge=self.timemerge,
+                    field=self.fields,
                     **self.kwargs
                 )
                 yield data
