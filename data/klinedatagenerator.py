@@ -5,10 +5,30 @@
 @author: LeungJain
 @time: 2019-04-22 15:26
 """
-import numpy as np
-import pandas as pd
+# import numpy as np
+# import pandas as pd
+import threading
 
 from .klinedata import KlineData
+
+
+class KlineThread(threading.Thread):
+
+    def __init__(self, func, args=()):
+        super(KlineThread, self).__init__()
+        self.result = None
+        self.func = func
+        self.args = args
+
+    def run(self):
+        try:
+            self.result = self.func(*self.args)
+        except Exception:
+            pass
+        pass
+
+    def get_result(self):
+        return self.result
 
 
 class KlineDataGenerator(KlineData):
@@ -114,6 +134,7 @@ class KlineDataGenerator(KlineData):
                     kline=self.kline,
                     axis=1,
                     timemerge=self.timemerge,
+                    field=self.fields,
                     **self.kwargs
                 )
                 yield data
@@ -131,3 +152,51 @@ class KlineDataGenerator(KlineData):
                 )
                 yield data
                 pass
+        pass
+
+    def apply(self, func, args):
+        """
+        通过多线程使在读取数据的同时可以做计算，即为每一个数据块创建一个
+        线程，并把相应的数据快交给对应的线程
+        :param func:
+        :param args:
+        :return: a list with thread-func
+        """
+        threads = []
+        for data in self.datas():
+            th = KlineThread(func, args=(data, ) + args)
+            threads.append(th)
+            th.start()
+        results = []
+        for th in threads:
+            th.join()
+            results.append(th.get_result())
+        return results
+        pass
+
+    def apply_on_window(self, func, args, windows=3):
+        """
+        把数据块组装成一个具有固定大小的窗口，并在窗口内执行
+        多线程函数
+        :param func:
+        :param args:
+        :param windows:
+        :return: a list with thread-func
+        """
+        threads = []
+        q = []
+        for data in self.datas():
+            q.append(data)
+            if len(q) < windows:
+                continue
+            # func(q, 1, 2)
+            th = KlineThread(func, args=(q.copy(),) + args)
+            threads.append(th)
+            th.start()
+            q.pop(0)
+        results = []
+        for th in threads:
+            th.join()
+            results.append(th.get_result())
+        return results
+        pass
