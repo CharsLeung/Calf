@@ -170,7 +170,7 @@ class KlineDataGenerator(KlineData):
         return results
         pass
 
-    def apply_on_window(self, func, args, windows=3,
+    def apply_on_window(self, func, args=None, windows=3,
                         use_multiprocessing=True):
         """
         把数据块组装成一个具有固定大小的窗口，并在窗口内执行

@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/data/tdxdata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/net/file.py" afterDir="false" />
+    <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="在KlineDataGenerator类中修改了一个致命吃bug，并就apply方法是否使用多线程进行的参数化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/klinedatagenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/klinedatagenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/modelrun.py" beforeDir="false" afterPath="$PROJECT_DIR$/dev/modelrun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="267" column="57" lean-forward="true" selection-start-line="267" selection-start-column="57" selection-end-line="267" selection-end-column="57" />
+              <caret line="267" column="57" selection-start-line="267" selection-start-column="57" selection-end-line="267" selection-end-column="57" />
               <folding>
                 <element signature="e#83#99#0" expanded="true" />
               </folding>
@@ -29,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/klinedatagenerator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2286">
-              <caret line="127" column="33" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
+            <state relative-caret-position="-15">
+              <caret line="172" column="45" selection-start-line="172" selection-start-column="45" selection-end-line="172" selection-end-column="45" />
               <folding>
                 <element signature="e#127#143#0" expanded="true" />
               </folding>
@@ -187,11 +182,11 @@
         <option value="$PROJECT_DIR$/data/webdata.py" />
         <option value="$PROJECT_DIR$/sys_config.py" />
         <option value="$PROJECT_DIR$/dev/modelrmds.py" />
-        <option value="$PROJECT_DIR$/data/klinedatagenerator.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/net/file.py" />
         <option value="$PROJECT_DIR$/dev/modelrun.py" />
         <option value="$PROJECT_DIR$/data/tdxdata.py" />
+        <option value="$PROJECT_DIR$/data/klinedatagenerator.py" />
       </list>
     </option>
   </component>
@@ -612,7 +607,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557047502988</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="在KlineDataGenerator类中修改了一个致命吃bug，并就apply方法是否使用多线程进行的参数化">
+      <created>1557905120060</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1557905120060</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -628,7 +630,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -640,7 +642,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32881" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32985386" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.24160346" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.24052005" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32881" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -667,7 +669,8 @@
     <MESSAGE value="添加的KlineDataGenerator文件" />
     <MESSAGE value="在KlineDataGenerator文件中加入了性能更优的方法" />
     <MESSAGE value="在KlineDataGenerator类中修改了横向分块，field参数无效的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="在KlineDataGenerator类中修改了横向分块，field参数无效的bug" />
+    <MESSAGE value="在KlineDataGenerator类中修改了一个致命吃bug，并就apply方法是否使用多线程进行的参数化" />
+    <option name="LAST_COMMIT_MESSAGE" value="在KlineDataGenerator类中修改了一个致命吃bug，并就apply方法是否使用多线程进行的参数化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1082,12 +1085,22 @@ plt.show()</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/klinedatagenerator.py">
+    <entry file="file://$PROJECT_DIR$/data/tdxdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2286">
-          <caret line="127" column="33" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
+        <state relative-caret-position="216">
+          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
           <folding>
-            <element signature="e#127#143#0" expanded="true" />
+            <element signature="e#84#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="267" column="57" selection-start-line="267" selection-start-column="57" selection-end-line="267" selection-end-column="57" />
+          <folding>
+            <element signature="e#83#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1163,22 +1176,12 @@ plt.show()</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/tdxdata.py">
+    <entry file="file://$PROJECT_DIR$/data/klinedatagenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+        <state relative-caret-position="-15">
+          <caret line="172" column="45" selection-start-line="172" selection-start-column="45" selection-end-line="172" selection-end-column="45" />
           <folding>
-            <element signature="e#84#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dev/modelrun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="267" column="57" lean-forward="true" selection-start-line="267" selection-start-column="57" selection-end-line="267" selection-end-column="57" />
-          <folding>
-            <element signature="e#83#99#0" expanded="true" />
+            <element signature="e#127#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
