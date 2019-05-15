@@ -138,6 +138,15 @@ class KlineData(object):
         """
         try:
             sql = dict()
+            if code is not None:
+                # 如需同时读取多个品种的数据时，传递code={'$in':[c1,c2,]}或者使用codes方法
+                # 某些证券的代码不叫stock_code,需要注意
+                if isinstance(code, str):
+                    sql['stock_code'] = code
+                elif isinstance(code, list):
+                    sql['stock_code'] = {'$in': code}
+                else:
+                    raise TypeError("'code' must be str or list of str")
             if axis == 1:
                 # 纵向读取必须说明code、start_date、end_date
                 if code is None or start_date is None or end_date is None:
@@ -145,14 +154,6 @@ class KlineData(object):
                                        'data, so you must get stock code'
                                        ' and start date and end data')
                 else:
-                    # 如需同时读取多个品种的数据时，传递code={'$in':[c1,c2,]}或者使用codes方法
-                    # 某些证券的代码不叫stock_code,需要注意
-                    if isinstance(code, str):
-                        sql['stock_code'] = code
-                    elif isinstance(code, list):
-                        sql['stock_code'] = {'$in': code}
-                    else:
-                        raise TypeError("'code' must be str or list of str")
                     sql['date'] = {'$gte': start_date, '$lte': end_date}
             if axis == 0:
                 # 横向读取数据必须说明start_date与end_date之一

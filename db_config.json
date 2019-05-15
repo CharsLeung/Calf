@@ -29,7 +29,10 @@
   },
     "server2": {
     "host": "123.234.5.140:57076",
-    "dbname": "ttt"
+    "dbname": "ttt",
+    "username": "zjf",
+    "password": "qwert12345",
+    "dbauth": "admin"
   },
   "hk": {
     "host": "218.255.184.86:57075",

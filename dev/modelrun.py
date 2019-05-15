@@ -77,6 +77,7 @@ class ModelRun:
     def KScheduler(cls, action, tz=None, deep_sleep=list()):
         """
         适用于A股的信号采集实时任务，适用于跨时区任务
+        :param tz:
         :param deep_sleep:
         :param action: 模型的运行管理对象
         :return:
@@ -253,6 +254,7 @@ class ModelRun:
                 DeprecationWarning,
                 stacklevel=2,
             )
+
             def merge(h, m):
                 return pd.Timedelta(hours=h, minutes=m)
 
@@ -408,7 +410,7 @@ class ModelRun:
         from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 
         calibration()
-        
+
         while 1:
             # scheduler = BlockingScheduler(daemonic=False)
             # crt = CalfDateTime.now(tz, offset)

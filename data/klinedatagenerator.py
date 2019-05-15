@@ -102,11 +102,11 @@ class KlineDataGenerator(KlineData):
         if self.axis == 0:
             l = len(self.code)
             for i in range(0, l, self.batch_size):
-                e = i + self.batch_size - 1
+                e = i + self.batch_size
                 if e >= l:
-                    bks.append([self.code[i], self.code[l - 1]])
+                    bks.append(self.code[i:l - 1])
                 else:
-                    bks.append([self.code[i], self.code[e]])
+                    bks.append(self.code[i:e])
         return bks
 
     def datas(self):
@@ -116,17 +116,7 @@ class KlineDataGenerator(KlineData):
         else:
             raise StopIteration('invalid generator index.')
         if self.axis == 1:
-            # data = self.read_data(
-            #     code=self.code,
-            #     start_date=bks[0][0],
-            #     end_date=bks[0][1],
-            #     kline=self.kline,
-            #     axis=1,
-            #     timemerge=self.timemerge,
-            #     **self.kwargs
-            # )
             for d in bks:
-                # yield data
                 data = self.read_data(
                     code=self.code,
                     start_date=d[0],
@@ -146,7 +136,7 @@ class KlineDataGenerator(KlineData):
                     start_date=self.start_date,
                     end_date=self.end_date,
                     kline=self.kline,
-                    axis=0,
+                    axis=1,
                     timemerge=self.timemerge,
                     field=self.fields,
                     **self.kwargs
@@ -155,49 +145,60 @@ class KlineDataGenerator(KlineData):
                 pass
         pass
 
-    def apply(self, func, args):
+    def apply(self, func, args=None, use_multiprocessing=True):
         """
         通过多线程使在读取数据的同时可以做计算，即为每一个数据块创建一个
         线程，并把相应的数据快交给对应的线程
+        :param use_multiprocessing:
         :param func:
         :param args:
         :return: a list with thread-func
         """
-        threads = []
+        threads, results = [], []
         for data in self.datas():
-            th = KlineThread(func, args=(data, ) + args)
-            threads.append(th)
-            th.start()
-        results = []
-        for th in threads:
-            th.join()
-            results.append(th.get_result())
+            arg = (data, ) + args if args is not None else (data, )
+            if use_multiprocessing:
+                th = KlineThread(func, args=arg)
+                threads.append(th)
+                th.start()
+            else:
+                results.append(func(*arg))
+        if use_multiprocessing:
+            for th in threads:
+                th.join()
+                results.append(th.get_result())
         return results
         pass
 
-    def apply_on_window(self, func, args, windows=3):
+    def apply_on_window(self, func, args, windows=3,
+                        use_multiprocessing=True):
         """
         把数据块组装成一个具有固定大小的窗口，并在窗口内执行
         多线程函数
+        :param use_multiprocessing:
         :param func:
         :param args:
         :param windows:
         :return: a list with thread-func
         """
-        threads = []
+        threads, results = [], []
         q = []
         for data in self.datas():
             q.append(data)
             if len(q) < windows:
                 continue
-            # func(q, 1, 2)
-            th = KlineThread(func, args=(q.copy(),) + args)
-            threads.append(th)
-            th.start()
+            # func(q, *args)
+            arg = (q.copy(), ) + args if args is not None else (q.copy(), )
+            if use_multiprocessing:
+                th = KlineThread(func, args=arg)
+                threads.append(th)
+                th.start()
+            else:
+                results.append(func(*arg))
             q.pop(0)
-        results = []
-        for th in threads:
-            th.join()
-            results.append(th.get_result())
+        if use_multiprocessing:
+            for th in threads:
+                th.join()
+                results.append(th.get_result())
         return results
         pass

@@ -5,6 +5,7 @@
 @author: LeungJain
 @time: 2017/11/27 14:10
 """
+import re
 import datetime as dt
 import warnings
 # import pygame
@@ -12,6 +13,7 @@ import threading
 import smtplib
 import email.mime.multipart
 import email.mime.text
+
 from Calf import config
 from business_calendar import Calendar, MO, TU, WE, TH, FR
 from Calf.exception import ExceptionInfo
@@ -269,9 +271,10 @@ import zipfile
 
 class File:
     """
-    create by: zjf and write more
+    create by: zjf and write more by leung
     """
     filename = []
+    rep = 1  # 记录重复的文件下标
 
     def __init__(self, filename):
         self.filename = filename
@@ -366,6 +369,22 @@ class File:
 
     def create_file(self, path):
         os.mknod(path)
+        pass
+
+    @classmethod
+    def create_file_name(cls, name):
+        n = name
+        while os.path.isfile(n):
+            # 已存在
+            try:
+                _ = re.search('\.[^.\\/:*?"<>|\r\n]+$', name).group(0)
+            except Exception:
+                raise ValueError('invaild file name.')
+            n = re.sub('{}'.format(_), '({}){}'.format(cls.rep, _), name)
+            # n = name.replace('.', '({}).'.format(cls.rep))
+            cls.rep += 1
+        cls.rep = 1
+        return n
 pass
 # Email.send_email(msgTo='leungjain@qq.com', content='hhhhhh')
 # date1 = dt.datetime(2017, 9, 29)
@@ -375,3 +394,4 @@ pass
 # r = trading.is_trade_day(date2)
 # print(r)
 # sound_notice('alert.wav').start()
+# print(File.create_file_name('E:\\bottles\\6009_相机3_第1张_边高0.bmp'))
