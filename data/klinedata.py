@@ -6,10 +6,10 @@
 @time: 2018/1/29 10:52
 """
 import datetime as dt
-# import numba
 import pandas as pd
 import re
-import numpy as np
+# import numpy as np
+
 from Calf.data import KLINE_MODEL_TABLE
 from Calf.exception import MongoIOError, ExceptionInfo
 
@@ -102,7 +102,7 @@ class KlineData(object):
         :param code:
         :param date:
         :param kline:
-        :return:
+        :return: dict
         """
         try:
             d = dt.datetime(date.year, date.month, date.day)
@@ -139,8 +139,8 @@ class KlineData(object):
         try:
             sql = dict()
             if code is not None:
-                # 如需同时读取多个品种的数据时，传递code={'$in':[c1,c2,]}或者使用codes方法
                 # 某些证券的代码不叫stock_code,需要注意
+                # code=None时即所有代码
                 if isinstance(code, str):
                     sql['stock_code'] = code
                 elif isinstance(code, list):

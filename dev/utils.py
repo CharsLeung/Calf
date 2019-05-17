@@ -8,7 +8,7 @@
 import os, time, ntplib, glob
 import numpy as np
 
-from Calf.exception import ExceptionInfo
+# from Calf.exception import ExceptionInfo
 from skimage import io, transform
 
 
@@ -63,6 +63,8 @@ def read_images(path, reshape=None, start=None, end=None):
     """
     从path文件夹下读取图片，并使其转化成np数组
     各像素点是以[r,g,b,透明度]数组表示的
+    :param end:
+    :param start:
     :param path:
     :param reshape:
     :return:

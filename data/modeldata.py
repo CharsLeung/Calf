@@ -5,15 +5,14 @@
 @author: LeungJain
 @time: 2017/11/23 14:24
 """
-import datetime
+# import datetime
+# import numpy as np
 import pandas as pd
-import numpy as np
 
 from bson import ObjectId
 from Calf.data import MODEL_TABLE, BaseModel
 from Calf.base.query_str_analyzer import analyzer
-from Calf.exception import MongoIOError, FileError, ExceptionInfo, \
-    WarningMessage, SuccessMessage
+from Calf.exception import MongoIOError, ExceptionInfo
 
 
 class ModelData(object):
@@ -138,6 +137,7 @@ class ModelData(object):
                                self.dbname).query_one(kw, field)
         except Exception as e:
             ExceptionInfo(e)
+            cursor = None
         finally:
             return cursor
 
@@ -156,11 +156,12 @@ class ModelData(object):
             data = pd.DataFrame()
             if cursor.count():
                 data = pd.DataFrame(list(cursor))
-        except Exception as e:
-            ExceptionInfo(e)
-        finally:
+
             cursor.close()
             return data
+        except Exception as e:
+            ExceptionInfo(e)
+            return pd.DataFrame()
 
     def aggregate(self, table_name, pipeline):
         """
@@ -175,13 +176,11 @@ class ModelData(object):
             # data = pd.DataFrame()
             # if cursor.count():
             data = pd.DataFrame(list(cursor))
-
-        except Exception as e:
-            ExceptionInfo(e)
-
-        finally:
             cursor.close()
             return data
+        except Exception as e:
+            ExceptionInfo(e)
+            return pd.DataFrame()
 
     # @classmethod
     def update_data(self, table_name, condition, **kw):

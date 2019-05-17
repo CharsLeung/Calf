@@ -6,16 +6,20 @@
 @time: 2018/2/7 17:30
 @describe：量化交易分析模型，适用于在python3环境下开发量化策略的研究员
 
-量化交易模型开发框架（我们将这个项目命名为Calf，以后统称Calf）是一个广泛适用的证券量化交易策略开发框架，
-Calf贯穿整个量化交易策略的生命周期，它提供了从源数据的组织管理到策略模型开发、策略信号回测验证、策略实时
-运行、策略优化路径等一系列的指导规范。Calf系统由Python语言实现，内部广泛使用pandas、numpy数据结构，并
-强烈建议使用Calf的开发者使用pandas、numpy这两个数据结构，有关它们的参考文档，你可以在：https://scipy.org/docs.html
-找到；此外我们建议Python语言开发者认真学习领会Pythonic精神要义，有关Python的编码风格你可以在：
-http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/contents/找到。
+量化交易模型开发框架（我们将这个项目命名为Calf，以后统称Calf）是一个广泛
+适用的证券量化交易策略开发框架，Calf贯穿整个量化交易策略的生命周期，它提
+供了从源数据的组织管理到策略模型开发、策略信号回测验证、策略实时运行、策略
+优化路径等一系列的指导规范。Calf系统由Python语言实现，内部广泛使用pandas、
+numpy数据结构，并强烈建议使用Calf的开发者使用pandas、numpy这两个数据结构，
+有关它们的参考文档，你可以在：https://scipy.org/docs.html找到；此外我们
+建议Python语言开发者认真学习领会Pythonic精神要义，有关Python的编码风格你
+可以在：http://zh-google-styleguide.readthedocs.io/en/latest/google
+-python-styleguide/contents/找到。
 
-在2018.10.26日对Calf的架构进行了一次大规模的调整，调整的方向是：1 功能分包；2 包包隔离。
-所有涉及数据库的类、方法都在data包下；所有涉及模型逻辑开发实现的类、方法都在dev包下；
-所有涉及模型回测的类、方法都在verification包下。引入相关功能的类或方法必须使用from Calf.包名 import 类
+在2018.10.26日对Calf的架构进行了一次大规模的调整，调整的方向是：1 功能分包；
+2 包包隔离。所有涉及数据库的类、方法都在data包下；所有涉及模型逻辑开发实现的
+类、方法都在dev包下；所有涉及模型回测的类、方法都在verification包下。引入相
+关功能的类或方法必须使用from Calf.包名 import 类
 Calf的版本从1.0更新到了1.1
 """
 from os.path import abspath, dirname

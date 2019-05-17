@@ -87,12 +87,14 @@ class config(object):
                 h = dt.datetime.strptime(sh, '%Y-%m-%d')
                 shs.append(h.strftime('%Y-%m-%d'))
         except Exception:
-            raise Exception('this holidays Must be a date string list like "[2018-01-01"]')
+            raise Exception('this holidays Must be a date '
+                            'string list like ["2018-01-01"]')
         tree = ET.parse(project_dir + "/Calf/MarketHolidays.xml")
         root = tree.getroot()
         for e in root:
             if e.attrib['id'] == market:
-                raise Exception('this market id "%s" already exists' % market)
+                raise Exception('this market id "%s"'
+                                ' already exists' % market)
         mk = ET.Element('market')
         mk.attrib = {'id': market}
         for d in shs:
@@ -113,7 +115,11 @@ class config(object):
                     return [d.text for d in days]
         else:
             # by db
-            exchanges = {'China_Stock_A': 'SSE', 'USA_Stock': 'NYSE', 'HK_Stock': 'HKEX'}
+            exchanges = {
+                'China_Stock_A': 'SSE',
+                'USA_Stock': 'NYSE',
+                'HK_Stock': 'HKEX'
+            }
             if market in exchanges.keys():
                 from Calf.data import ModelData as md
                 if 'start_date' in kwargs.keys():
@@ -124,11 +130,14 @@ class config(object):
                     ed = kwargs['end_date']
                 else:
                     ed = dt.datetime.now() + dt.timedelta(days=365)
-                hds = md().read_data('MarketCalendar', exchange=exchanges[market],
-                                     open=0, date={'$gte': sd, '$lte': ed})
+                hds = md().read_data('MarketCalendar',
+                                     exchange=exchanges[market],
+                                     open=0, date={'$gte': sd, '$lte': ed}
+                                     )
                 return hds.date.tolist()
             else:
-                Exception("not find this market: {}'s calendar data in database".format(market))
+                Exception("not find this market: {}'s calendar data "
+                          "in database".format(market))
         raise Exception('not find this market id "%s"' % market)
 
     @classmethod
@@ -143,7 +152,8 @@ class config(object):
             h = dt.datetime.strptime(holiday)
             holiday = h.strftime('%Y-%m-%d')
         except Exception:
-            raise Exception('this holiday Must be a date string like "2018-01-01"')
+            raise Exception('this holiday Must be a date string '
+                            'like "2018-01-01"')
         tree = ET.parse(project_dir + "/Calf/MarketInfo.xml")
         root = tree.getroot()
         node = root.findall("./market/[@id='{}']".format(market))
@@ -184,7 +194,8 @@ class config(object):
                 ac = trade_date.find('am_close').text
                 po = trade_date.find('pm_open').text
                 pc = trade_date.find('pm_close').text
-                return dict(market=market, am_open=ao, am_close=ac, pm_open=po, pm_close=pc)
+                return dict(market=market, am_open=ao, am_close=ac,
+                            pm_open=po, pm_close=pc)
         raise Exception('not find this market id "%s"' % market)
 
     @classmethod
@@ -193,7 +204,8 @@ class config(object):
         root = tree.getroot()
         for e in root:
             if e.attrib['id'] == kw['id']:
-                raise Exception('this market id "%s" already exists' % kw['id'])
+                raise Exception('this market id "%s" already '
+                                'exists' % kw['id'])
         market = ET.Element('market')
         market.attrib = {'id': kw['id']}
         trade_date = ET.Element('trade_date')
@@ -219,7 +231,8 @@ class config(object):
             raise Exception('not find this market id "%s"' % market)
 
     @classmethod
-    def update_market_info(cls, node_tag, attrib=None, value=None, type='text'):
+    def update_market_info(cls, node_tag, attrib=None,
+                           value=None, type='text'):
         if type == 'text':
             tree = ET.parse(project_dir + "/Calf/MarketInfo.xml")
             root = tree.getroot()
@@ -236,7 +249,8 @@ class config(object):
             raise Exception('type must in (text, attrib)')
 
     @classmethod
-    def add_database(cls, id, host, dbname=None, username=None, password=None, dbauth=None, **kw):
+    def add_database(cls, id, host, dbname=None, username=None,
+                     password=None, dbauth=None, **kw):
         """
         为Calf系统添加一个目标数据库
         :param id:这个目标数据库的标识
@@ -259,7 +273,8 @@ class config(object):
             if dbauth is not None:
                 db['dbauth'] = dbauth
             db = dict(db, **kw)
-            with open(project_dir + '/Calf/db_config.json', 'r', encoding='utf-8') as file:
+            with open(project_dir + '/Calf/db_config.json', 'r',
+                      encoding='utf-8') as file:
                 content = json.load(file)
                 file.close()
                 del file
@@ -268,7 +283,8 @@ class config(object):
                 raise Exception('this id "%s" already exists' % id)
             else:
                 content[id] = db
-                with open(project_dir + '/Calf/db_config.json', 'w', encoding='utf-8') as file:
+                with open(project_dir + '/Calf/db_config.json', 'w',
+                          encoding='utf-8') as file:
                     file.write(json.dumps(content))
         except Exception:
             raise Exception
@@ -281,7 +297,8 @@ class config(object):
         :param kw:
         :return:
         """
-        with open(project_dir + '/Calf/db_config.json', 'r', encoding='utf-8') as file:
+        with open(project_dir + '/Calf/db_config.json', 'r',
+                  encoding='utf-8') as file:
             content = json.load(file)
             file.close()
         keys = content.keys()
@@ -293,8 +310,10 @@ class config(object):
                 if k in sub_keys:
                     content[id][k] = v
                 else:
-                    raise Exception('not find this key:"%s" in original file' % k)
-            with open(project_dir + '/Calf/db_config.json', 'w', encoding='utf-8') as file:
+                    raise Exception('not find this key:"%s" '
+                                    'in original file' % k)
+            with open(project_dir + '/Calf/db_config.json', 'w',
+                      encoding='utf-8') as file:
                 file.write(json.dumps(content))
 
     @classmethod
@@ -304,10 +323,12 @@ class config(object):
         :param id:
         :return:
         """
-        with open(project_dir + '/Calf/db_config.json', 'r', encoding='utf-8') as file:
+        with open(project_dir + '/Calf/db_config.json', 'r',
+                  encoding='utf-8') as file:
             content = json.load(file)
             file.close()
-        with open(project_dir + '/Calf/db_config.json', 'w', encoding='utf-8') as file:
+        with open(project_dir + '/Calf/db_config.json', 'w',
+                  encoding='utf-8') as file:
             content.pop(id)
             file.write(json.dumps(content))
             file.close()

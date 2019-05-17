@@ -30,6 +30,7 @@ class fontcolor:
     F_GREEN_BLUE = '\033[36m'
     B_WHITE_F_BLACK = '\033[7;37;30m'
     END = '\033[0m'
+    pass
 
 
 def progress_bar(total, complete, **kwargs):
@@ -37,6 +38,7 @@ def progress_bar(total, complete, **kwargs):
     sr = ' ' * isr
     print('\rRun:{0}\033[7;37;30m{1}\033[0m{2}/{3}'.format(kwargs, sr, complete, total),
           end='', flush=True)
+    pass
 
 
 def play_music(sound, second=10):
@@ -76,7 +78,7 @@ def sound_notice(sound_name):
 
 class trading:
     """
-    关于交易所的一些基本概况
+    关于交易所交易时间的一些基本概况
     """
     # TODO(leungjain): 注意需要手动添加每个市场每年的非周末节假日休市安排
     market = config.default_market_id(info_type='MarketHolidays')
@@ -232,6 +234,10 @@ class trading:
 
 
 class Email:
+
+    def __init__(self):
+        pass
+
     @classmethod
     def send_email(cls, msgTo, content):
         try:

@@ -62,7 +62,9 @@ class ValidVisual:
     def profit(cls, menu, index=None, title=None, save=None):
         m0 = menu.date.min() - dt.timedelta(days=1)
         m1 = m0 - dt.timedelta(days=1)
-        menu = menu.append(pd.DataFrame([[m0, 0], [m1, 0]], columns=['date', 'profit']))
+        menu = menu.append(
+            pd.DataFrame([[m0, 0], [m1, 0]], columns=['date', 'profit'])
+        )
         menu.fillna(0, inplace=True)
         menu = menu.sort_values(['date'], ascending=True)
         y = FinanceIndex.already_get(menu.profit.tolist())

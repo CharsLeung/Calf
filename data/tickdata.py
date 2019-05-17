@@ -9,7 +9,7 @@ import pandas as pd
 import datetime as dt
 from Calf.data import BaseModel
 from Calf.data import ModelData as md
-from Calf.exception import MongoIOError, ExceptionInfo
+from Calf.exception import ExceptionInfo
 
 
 class TickData(object):
@@ -49,6 +49,7 @@ class TickData(object):
     def read_data(cls, code, start_date, end_date, field=None, timemerge=False, **kw):
         """
 
+        :param field:
         :param code:
         :param start_date:
         :param end_date:

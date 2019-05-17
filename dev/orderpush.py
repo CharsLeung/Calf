@@ -118,7 +118,9 @@ class OrderPush(object):
             for i, r in ais.iterrows():
                 # 为X账户推荐信号
                 '''X账户已持有的来自于model_from策略的记录'''
-                orders = od.read_orders(model_from=model_from, client_no=r.client_no, status=1)
+                orders = od.read_orders(
+                    model_from=model_from, client_no=r.client_no, status=1
+                )
                 sgls = data.copy(deep=True)  #
                 if len(orders):
                     '''X账户已经持有新推荐的信号，将这些排除在外'''
@@ -128,9 +130,11 @@ class OrderPush(object):
                 if len(sgls) == 0:
                     '''没有可以向X推荐的信号'''
                     print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                    print(fontcolor.F_RED + '# 策略' + model_from + '推荐记录 #' + fontcolor.END)
+                    print(fontcolor.F_RED + '# 策略' + model_from +
+                          '推荐记录 #' + fontcolor.END)
                     print(fontcolor.F_RED + '账户：' + r.client_no, fontcolor.END)
-                    print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：没有找到可以推荐的信号：', fontcolor.END)
+                    print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                          '备注：没有找到可以推荐的信号：', fontcolor.END)
                     print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
                     continue
                 '''X账户还可以买入的比例，这个比例是针对于这个策略的'''
@@ -156,8 +160,10 @@ class OrderPush(object):
                     br = 0
                     remarks = '账户余额不足，无新信号推荐'
                 print(fontcolor.F_GREEN + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_GREEN + '# 策略' + model_from + '推荐记录 #' + fontcolor.END)
-                print(fontcolor.F_GREEN + '账户：', r.client_no, '当前可用资金比例：', Ar, '当前需购买的数量：',
+                print(fontcolor.F_GREEN + '# 策略' + model_from +
+                      '推荐记录 #' + fontcolor.END)
+                print(fontcolor.F_GREEN + '账户：', r.client_no,
+                      '当前可用资金比例：', Ar, '当前需购买的数量：',
                       need_, fontcolor.END)
                 if br > 0:
                     g = sgls.sort_values(['confidence'], ascending=True).head(n=int(need_))
@@ -215,7 +221,8 @@ class OrderPush(object):
                 #####################
                 od.open(goods)
                 #####################
-                df = goods.loc[:, ['model_from', 'client_no', 'stock_code', 'open_price', 'confidence', 'Rr',
+                df = goods.loc[:, ['model_from', 'client_no', 'stock_code',
+                                   'open_price', 'confidence', 'Rr',
                                    'max_pst_date']]
                 df = pd.pivot_table(df, index=['model_from', 'client_no', 'stock_code'])
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
@@ -223,8 +230,10 @@ class OrderPush(object):
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
             else:
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-                print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：无新信号建议', fontcolor.END)
+                print(fontcolor.F_RED + '#策略' + model_from +
+                      '推荐记录#' + fontcolor.END)
+                print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                      '备注：无新信号建议', fontcolor.END)
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
         else:
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
@@ -392,14 +401,18 @@ class OrderPush(object):
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
             else:
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-                print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：无新信号建议', fontcolor.END)
+                print(fontcolor.F_RED + '#策略' + model_from +
+                      '推荐记录#' + fontcolor.END)
+                print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                      '备注：无新信号建议', fontcolor.END)
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
                 # return pd.DataFrame([], columns=cls.order_columns)
         else:
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-            print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-            print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：当前无托管账户支持该策略', fontcolor.END)
+            print(fontcolor.F_RED + '#策略' + model_from +
+                  '推荐记录#' + fontcolor.END)
+            print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                  '备注：当前无托管账户支持该策略', fontcolor.END)
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
         return goods
 
@@ -446,9 +459,11 @@ class OrderPush(object):
                 if len(sgls) == 0:
                     '''没有可以向X推荐的信号'''
                     print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                    print(fontcolor.F_RED + '# 策略' + model_from + '推荐记录 #' + fontcolor.END)
+                    print(fontcolor.F_RED + '# 策略' + model_from +
+                          '推荐记录 #' + fontcolor.END)
                     print(fontcolor.F_RED + '账户：' + r.client_no, fontcolor.END)
-                    print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：没有找到可以推荐的信号：', fontcolor.END)
+                    print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                          '备注：没有找到可以推荐的信号：', fontcolor.END)
                     print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
                     continue
                 '''X账户还可以买入的比例，这个比例是针对于这个策略的'''
@@ -480,8 +495,10 @@ class OrderPush(object):
                     br = 0
                     remarks = '账户余额不足，无新信号推荐'
                 print(fontcolor.F_GREEN + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_GREEN + '# 策略' + model_from + '推荐记录 #' + fontcolor.END)
-                print(fontcolor.F_GREEN + '账户：', r.client_no, '当前可用资金比例：', Ar, '当前需购买的数量：',
+                print(fontcolor.F_GREEN + '# 策略' + model_from +
+                      '推荐记录 #' + fontcolor.END)
+                print(fontcolor.F_GREEN + '账户：', r.client_no,
+                      '当前可用资金比例：', Ar, '当前需购买的数量：',
                       need_, fontcolor.END)
                 if br > 0:
                     g = sgls.sort_values(['confidence'], ascending=True).head(n=int(need_))
@@ -498,10 +515,12 @@ class OrderPush(object):
                         print(fontcolor.F_GREEN, '买入：', g.stock_code.tolist(), fontcolor.END)
                         try:
                             g['date'] = trading(market='USA_Stock').trade_period(tdy, 1)
-                            g['pst_date'] = rk.finally_datetime(tdy, max_pst_days=r['max_pst_days'],
-                                                                max_pst_hour=0, max_pst_min=0,
-                                                                market='USA_Stock')
-                            od.update_client_info(condition={'_id': r['_id_y']}, Rr=r['Rr'] - br * bct_,
+                            g['pst_date'] = rk.finally_datetime(
+                                tdy, max_pst_days=r['max_pst_days'],
+                                max_pst_hour=0, max_pst_min=0,
+                                market='USA_Stock')
+                            od.update_client_info(condition={'_id': r['_id_y']},
+                                                  Rr=r['Rr'] - br * bct_,
                                                   update=dt.datetime.now())
                             # if rst['nModified'] == 0 or rst['updatedExisting'] is not True:
                             #     print('账户:{} Rr未能成功更新，取消本次推荐.'.format(r['client_no']))
@@ -517,7 +536,8 @@ class OrderPush(object):
                         print(fontcolor.F_GREEN, '没有发现可以买入的信号', fontcolor.END)
                 else:
                     print(fontcolor.F_GREEN, '支持当前策略的余额不足', fontcolor.END)
-                print(fontcolor.F_GREEN, '时间：', dt.datetime.now(), '备注：', remarks, fontcolor.END)
+                print(fontcolor.F_GREEN, '时间：', dt.datetime.now(),
+                      '备注：', remarks, fontcolor.END)
                 print(fontcolor.F_GREEN + '=' * 80 + fontcolor.END)
             if len(goods):
                 goods = goods.round({'confidence': 2, 'Rr': 2, 'exp_open_vol': 0})
@@ -537,7 +557,8 @@ class OrderPush(object):
                 #####################
                 od.open(goods)
                 #####################
-                df = goods.loc[:, ['model_from', 'client_no', 'stock_code', 'open_price', 'confidence', 'Rr',
+                df = goods.loc[:, ['model_from', 'client_no', 'stock_code',
+                                   'open_price', 'confidence', 'Rr',
                                    'max_pst_date']]
                 df = pd.pivot_table(df, index=['model_from', 'client_no', 'stock_code'])
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
@@ -545,14 +566,18 @@ class OrderPush(object):
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
             else:
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-                print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：无新信号建议', fontcolor.END)
+                print(fontcolor.F_RED + '#策略' + model_from +
+                      '推荐记录#' + fontcolor.END)
+                print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                      '备注：无新信号建议', fontcolor.END)
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
                 # return pd.DataFrame([], columns=cls.order_columns)
         else:
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-            print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-            print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：当前无托管账户支持该策略', fontcolor.END)
+            print(fontcolor.F_RED + '#策略' + model_from +
+                  '推荐记录#' + fontcolor.END)
+            print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                  '备注：当前无托管账户支持该策略', fontcolor.END)
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
         return goods
 
@@ -565,7 +590,8 @@ class OrderPush(object):
         :param data:model_from策略的信号数据
         :return:
         """
-        order_filed = ['type', 'open_date', 'open_price', 'confidence', 'model_from']
+        order_filed = ['type', 'open_date', 'open_price',
+                       'confidence', 'model_from']
         if set(order_filed) <= set(data.columns):
             pass
         else:
@@ -588,7 +614,9 @@ class OrderPush(object):
             for i, r in ais.iterrows():
                 # 为X账户推荐信号
                 '''X账户已持有的来自于model_from策略的记录'''
-                orders = od.read_orders(model_from=model_from, client_no=r.client_no, status=1)
+                orders = od.read_orders(
+                    model_from=model_from, client_no=r.client_no, status=1
+                )
                 sgls = data.copy(deep=True)  #
                 if len(orders):
                     '''X账户已经持有新推荐的信号，将这些排除在外'''
@@ -598,9 +626,11 @@ class OrderPush(object):
                 if len(sgls) == 0:
                     '''没有可以向X推荐的信号'''
                     print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                    print(fontcolor.F_RED + '# 策略' + model_from + '推荐记录 #' + fontcolor.END)
+                    print(fontcolor.F_RED + '# 策略' + model_from +
+                          '推荐记录 #' + fontcolor.END)
                     print(fontcolor.F_RED + '账户：' + r.client_no, fontcolor.END)
-                    print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：没有找到可以推荐的信号：', fontcolor.END)
+                    print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                          '备注：没有找到可以推荐的信号：', fontcolor.END)
                     print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
                     continue
                 '''X账户还可以买入的比例，这个比例是针对于这个策略的'''
@@ -632,8 +662,10 @@ class OrderPush(object):
                     br = 0
                     remarks = '可用余额不足，无新信号推荐'
                 print(fontcolor.F_GREEN + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_GREEN + '# 策略' + model_from + '推荐记录 #' + fontcolor.END)
-                print(fontcolor.F_GREEN + '账户：', r.client_no, '当前可用资金比例：', Ar, '当前需购买的数量：',
+                print(fontcolor.F_GREEN + '# 策略' + model_from +
+                      '推荐记录 #' + fontcolor.END)
+                print(fontcolor.F_GREEN + '账户：', r.client_no,
+                      '当前可用资金比例：', Ar, '当前需购买的数量：',
                       need_, fontcolor.END)
                 if br > 0:
                     g = sgls.sort_values(['confidence'], ascending=True).head(n=int(need_))
@@ -651,7 +683,8 @@ class OrderPush(object):
                         try:
                             # g['date'] = tdy
                             # g['pst_date'] = tdy + dt.timedelta(hours=10)
-                            od.update_client_info(condition={'_id': r['_id_y']}, Rr=r['Rr'] - br * bct_,
+                            od.update_client_info(condition={'_id': r['_id_y']},
+                                                  Rr=r['Rr'] - br * bct_,
                                                   update=dt.datetime.now())
                             # if rst['nModified'] == 0 or rst['updatedExisting'] is not True:
                             #     print('账户:{} Rr未能成功更新，取消本次推荐.'.format(r['client_no']))
@@ -667,7 +700,8 @@ class OrderPush(object):
                         print(fontcolor.F_GREEN, '没有发现可以买入的信号', fontcolor.END)
                 else:
                     print(fontcolor.F_GREEN, '支持当前策略的余额不足', fontcolor.END)
-                print(fontcolor.F_GREEN, '时间：', dt.datetime.now(), '备注：', remarks, fontcolor.END)
+                print(fontcolor.F_GREEN, '时间：', dt.datetime.now(),
+                      '备注：', remarks, fontcolor.END)
                 print(fontcolor.F_GREEN + '=' * 80 + fontcolor.END)
             if len(goods):
                 goods = goods.round({'confidence': 2, 'Rr': 2, 'exp_open_vol': 0})
@@ -688,7 +722,8 @@ class OrderPush(object):
                 #####################
                 od.open(goods)
                 #####################
-                df = goods.loc[:, ['model_from', 'client_no', 'stock_code', 'open_price', 'confidence', 'Rr',
+                df = goods.loc[:, ['model_from', 'client_no', 'stock_code',
+                                   'open_price', 'confidence', 'Rr',
                                    'max_pst_date']]
                 df = pd.pivot_table(df, index=['model_from', 'client_no', 'stock_code'])
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
@@ -696,14 +731,18 @@ class OrderPush(object):
                 print(fontcolor.F_PURPLE + '=' * 80 + fontcolor.END)
             else:
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-                print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-                print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：无新信号建议', fontcolor.END)
+                print(fontcolor.F_RED + '#策略' + model_from +
+                      '推荐记录#' + fontcolor.END)
+                print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                      '备注：无新信号建议', fontcolor.END)
                 print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
                 # return pd.DataFrame([], columns=cls.order_columns)
         else:
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
-            print(fontcolor.F_RED + '#策略' + model_from + '推荐记录#' + fontcolor.END)
-            print(fontcolor.F_RED, '时间：', dt.datetime.now(), '备注：当前无托管账户支持该策略', fontcolor.END)
+            print(fontcolor.F_RED + '#策略' + model_from +
+                  '推荐记录#' + fontcolor.END)
+            print(fontcolor.F_RED, '时间：', dt.datetime.now(),
+                  '备注：当前无托管账户支持该策略', fontcolor.END)
             print(fontcolor.F_RED + '=' * 80 + fontcolor.END)
         return goods
 
@@ -856,7 +895,8 @@ class OrderPush(object):
                     columns={'datetime': 'close_date', 'price': 'close_price'})
                 cols = ['_id', 'stock_code', 'type', 'open_date', 'open_price',
                         'confidence', 'Rr', 'close_date', 'status', 'close_price',
-                        'stop_loss', 'stop_get', 'fee', 'profit', 'reason', 'model_from', 'version']
+                        'stop_loss', 'stop_get', 'fee', 'profit', 'reason',
+                        'model_from', 'version']
                 stop_data = stop_data.loc[:, cols]
                 stop_data['profit'] -= stop_data.fee
                 # 修改reason，以防下一次继续监控

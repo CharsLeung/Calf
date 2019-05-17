@@ -191,12 +191,14 @@ def MinMaxScaler(data, on, window, ascending=False):
     if ascending:
         for col in on:
             data[col] = (data[col] - data[col].rolling(window).min()) \
-                        / (data[col].rolling(window).max() - data[col].rolling(window).min())
+                        / (data[col].rolling(window).max()
+                           - data[col].rolling(window).min())
     else:
         data = data[::-1]
         for col in on:
             data[col] = (data[col] - data[col].rolling(window).min()) \
-                        / (data[col].rolling(window).max() - data[col].rolling(window).min())
+                        / (data[col].rolling(window).max()
+                           - data[col].rolling(window).min())
         data = data[::-1]
     return data
 
@@ -218,10 +220,12 @@ def StandardScaler(data, on, window, ascending=False):
         raise TypeError("this type of param 'on' must in (str, list).")
     if ascending:
         for col in on:
-            data[col] = (data[col] - data[col].rolling(window).mean()) / data[col].rolling(window).std()
+            data[col] = (data[col] - data[col].rolling(window).mean())\
+                        / data[col].rolling(window).std()
     else:
         data = data[::-1]
         for col in on:
-            data[col] = (data[col] - data[col].rolling(window).mean()) / data[col].rolling(window).std()
+            data[col] = (data[col] - data[col].rolling(window).mean())\
+                        / data[col].rolling(window).std()
         data = data[::-1]
     return data

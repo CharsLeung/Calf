@@ -14,6 +14,7 @@ import warnings
 # from timeit import timeit
 import pandas as pd
 import pytz
+
 from Calf import project_dir
 from Calf.deprecation import deprecated
 from Calf.exception import ExceptionInfo, WarningMessage
@@ -48,7 +49,8 @@ class ModelRun:
     @classmethod
     def open_kline_update_log(cls):
         try:
-            with open(project_dir + '/Calf/kline_update_log.json', encoding='utf-8') as file:
+            with open(project_dir + '/Calf/kline_update_log.json',
+                      encoding='utf-8') as file:
                 content = json.load(file)
             return content
         except Exception as e:
@@ -169,7 +171,8 @@ class ModelRun:
         next_m30 = now
         next_h1 = now
         next_d1 = now
-        sup_klines = ['forex_min5', 'forex_min15', 'forex_min30', 'forex_min60', 'forex_day1']
+        sup_klines = ['forex_min5', 'forex_min15', 'forex_min30',
+                      'forex_min60', 'forex_day1']
         if set(klines) <= set(sup_klines):
             pass
         else:
@@ -291,7 +294,7 @@ class ModelRun:
             ExceptionInfo(e)
 
     @classmethod
-    def rerun(cls, action, deep_sleep=list(), offset=None):
+    def rerun(cls, action, deep_sleep, offset=None):
         """
         复盘演示
         :param action:

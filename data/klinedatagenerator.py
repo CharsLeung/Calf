@@ -34,7 +34,25 @@ class KlineThread(threading.Thread):
 class KlineDataGenerator(KlineData):
 
     """
-    K线数据的一个迭代器
+    加载K线数据的一个迭代器，目的是为了分块加载大规模的
+    K线数据。通常情况下一次性加载符合条件的所有数据，这
+    会造成内存灾难，会急剧拖慢速度。按照某种规则分块后，
+    分批查询并返回，这样只会占用较少的内存，这在某些情况
+    下是适用的。
+    分块的一般思路：下表是code/date索引矩阵
+    -----------------------------------------
+    |       | code1 | code2 | ..... | coden |
+    |-------+-------+-------+-------+-------+
+    | date1 |       |       |       |       |
+    |-------+-------+-------+-------+-------+
+    | date2 |       |       |       |       |
+    |-------+-------+-------+-------+-------+
+    | ..... |       |       |       |       |
+    |-------+-------+-------+-------+-------+
+    | daten |       |       |       |       |
+    |-------+-------+-------+-------+-------+
+    每块是code-date索引矩阵的一个矩形子集。
+    当前的版本只支持按code-date列或行划分块
     """
 
     def __init__(self,
@@ -51,13 +69,19 @@ class KlineDataGenerator(KlineData):
                  **kwargs):
         """
         :param code: str or list when axis=0
-        :param start_date:
-        :param end_date:
-        :param kline:
+        :param start_date: code/date索引矩阵date的开始位置
+        :param end_date: code/date索引矩阵的结束位置
+        :param axis: 1-> 按行分块(n天所有code的数据)
+        0-> 按列索引(code中n个股票的所有date数据)
+        :param batch_size: 当axis=1时，表示天数，当axis=0的
+        表示股票代码数。
+        以下参数可以参考KlineData类
+        :param kline: 表名
+        :param timemerge
         :param fields:
-        :param batch_size: int days
         :param location:
         :param dbname:
+        :param kwargs
         """
         super(KlineDataGenerator, self).__init__(
             location, dbname
@@ -78,6 +102,9 @@ class KlineDataGenerator(KlineData):
         pass
 
     def __days__(self):
+        """
+        :return: a list of days from start_date to end_date
+        """
         _ = self.field(
             table_name=self.kline,
             field_name='date',
@@ -88,7 +115,7 @@ class KlineDataGenerator(KlineData):
     def __blocks__(self):
         """
         对查询结构进行分块，以便下一步分块查询
-        :return:
+        :return: a list of blocks
         """
         bks = []
         if self.axis == 1:

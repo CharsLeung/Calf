@@ -5,8 +5,9 @@
 @author: LeungJain
 @time: 2018/1/31 11:02
 """
-from Calf.data import MongoIOError, MODEL_TABLE
 import pandas as pd
+
+from Calf.data import MongoIOError, MODEL_TABLE
 
 
 class BaseData(object):

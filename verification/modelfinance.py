@@ -5,16 +5,19 @@
 @author: LeungJain
 @time: 2017/11/18 10:48
 """
-import datetime
 import math
 import numpy as np
-import pandas as pd
+# import datetime
+# import pandas as pd
 
 
 class FinanceIndex:
     Model_Param = {
-        'RISK_FREE': 0.045,  # 无风险收益或固定收益，常常以国债基金、标准利率、银行短期存款确定即货币的时间价值
-        'INDEX_MARKET_REFERENCE': '399303',  # 计算市场无风险收益时选择的大盘指数
+        # 无风险收益或固定收益，常常以国债基金、
+        # 标准利率、银行短期存款确定即货币的时间价值
+        'RISK_FREE': 0.045,
+        # 计算市场无风险收益时选择的大盘指数
+        'INDEX_MARKET_REFERENCE': '399303',
     }
 
     @classmethod
@@ -90,6 +93,7 @@ class FinanceIndex:
         """
         夏普比率：可简单理解为每承受一单位风险，会产生多少的超额报酬,
         传入的收益列表是不累加的，单次的，表示单次交易与风险的关系
+        :param risk_free:
         :param profit_list: a list
         :return:
         """
