@@ -139,7 +139,7 @@ class BaseModel(object):
     def update(self, cond, form):
         """
         :param form: 更新数据，form 是一个表单
-        :param hard: 默认为 False, 如果设置为 True, 可更新 __fields__ 尚未预定义好的属性
+        :param cond: 更新条件
         """
         # for k, v in form.items():
         #     if hard or hasattr(self, k):

@@ -32,7 +32,7 @@ class KlineThread(threading.Thread):
 
 
 class KlineDataGenerator(KlineData):
-
+    
     """
     加载K线数据的一个迭代器，目的是为了分块加载大规模的
     K线数据。通常情况下一次性加载符合条件的所有数据，这
@@ -178,7 +178,7 @@ class KlineDataGenerator(KlineData):
         线程，并把相应的数据快交给对应的线程
         :param use_multiprocessing:
         :param func:
-        :param args:
+        :param args: a tuple for parameters of func
         :return: a list with thread-func
         """
         threads, results = [], []
@@ -204,7 +204,7 @@ class KlineDataGenerator(KlineData):
         多线程函数
         :param use_multiprocessing:
         :param func:
-        :param args:
+        :param args: a tuple for parameters of func
         :param windows:
         :return: a list with thread-func
         """

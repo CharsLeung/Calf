@@ -137,6 +137,8 @@ class KlineData(object):
         :return: DataFrame of data, or a null df.
         """
         try:
+            if kline is None:
+                raise ValueError('kline is indispensable param.')
             sql = dict()
             if code is not None:
                 # 某些证券的代码不叫stock_code,需要注意
