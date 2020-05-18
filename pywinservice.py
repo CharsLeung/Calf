@@ -52,6 +52,7 @@ class PyService(win32serviceutil.ServiceFramework):
         self.ReportServiceStatus(win32service.SERVICE_STOPPED)
 
     def start(self):
+        # 在这里重载服务
         time.sleep(10000)
 
     def stop(self):
