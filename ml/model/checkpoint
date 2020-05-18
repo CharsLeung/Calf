@@ -1,6 +1,0 @@
-model_checkpoint_path: "mnist-2300"
-all_model_checkpoint_paths: "mnist-1900"
-all_model_checkpoint_paths: "mnist-2000"
-all_model_checkpoint_paths: "mnist-2100"
-all_model_checkpoint_paths: "mnist-2200"
-all_model_checkpoint_paths: "mnist-2300"

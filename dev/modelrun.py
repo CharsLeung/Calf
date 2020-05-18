@@ -449,8 +449,8 @@ class ModelRun:
                             print('Calf-Note:start task running on ', dt.datetime.now(tz=tz))
                             print('-' * 80 + fontcolor.END)
                             try:
-                                def start(args):
-                                    action.start(args=args)
+                                def start(**args):
+                                    action.start(**args)
 
                                 t = threading.Thread(target=start, args=(args,))
                                 t.start()
@@ -465,8 +465,8 @@ class ModelRun:
                             print('Calf-Note:execute task running on ', dt.datetime.now(tz=tz))
                             print('-' * 80 + fontcolor.END)
                             try:
-                                def exe(args):
-                                    action.execute(args=args)
+                                def exe(**args):
+                                    action.execute(**args)
 
                                 t = threading.Thread(target=exe, args=(args,))
                                 t.start()
@@ -498,8 +498,8 @@ class ModelRun:
                             print('Calf-Note:end task running on ', dt.datetime.now(tz=tz))
                             print('-' * 80 + fontcolor.END)
                             try:
-                                def end(args):
-                                    action.end(args=args)
+                                def end(**args):
+                                    action.end(**args)
 
                                 t = threading.Thread(target=end, args=(args,))
                                 t.start()
