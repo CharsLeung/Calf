@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="修改了Calf中的一些代码格式，无功能性的改变">
-      <change afterPath="$PROJECT_DIR$/data/eastdata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ftp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ftp/pyftpclient.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ftp/pyftpserver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/net/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pywinservice.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Calf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Calf.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketHolidays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MarketHolidays.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/realdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/realdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/db_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/base_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/base_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/net/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/net/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="147cf9b9-8bf1-40f4-b7cf-99234fefd925" name="Default" comment="添加了ftp的功能" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +63,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ftp/pyftpserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1318">
-              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="274">
+              <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
               <folding>
                 <element signature="e#144#158#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modelrun.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4">
+              <caret line="459" column="45" selection-start-line="459" selection-start-column="45" selection-end-line="459" selection-end-column="45" />
+              <folding>
+                <element signature="e#83#99#0" expanded="true" />
+                <element signature="e#11686#11700#0" />
               </folding>
             </state>
           </provider>
@@ -132,7 +126,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/verification/__init__.py" />
-        <option value="$PROJECT_DIR$/modelrun.py" />
         <option value="$PROJECT_DIR$/dev/ugly.py" />
         <option value="$PROJECT_DIR$/data/otherdata.py" />
         <option value="$PROJECT_DIR$/data/orderdata.py" />
@@ -181,6 +174,7 @@
         <option value="$PROJECT_DIR$/ftp/pyftpclient.py" />
         <option value="$PROJECT_DIR$/ftp/__init__.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/modelrun.py" />
       </list>
     </option>
   </component>
@@ -593,7 +587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559810985541</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="添加了ftp的功能">
+      <created>1589773007090</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1589773007090</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -606,7 +607,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="557" y="51" width="1372" height="1056" extended-state="1" />
+    <frame x="557" y="51" width="1372" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1714939" />
@@ -651,7 +652,8 @@
     <MESSAGE value="在KlineDataGenerator类中修改了横向分块，field参数无效的bug" />
     <MESSAGE value="在KlineDataGenerator类中修改了一个致命吃bug，并就apply方法是否使用多线程进行的参数化" />
     <MESSAGE value="修改了Calf中的一些代码格式，无功能性的改变" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了Calf中的一些代码格式，无功能性的改变" />
+    <MESSAGE value="添加了ftp的功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了ftp的功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -754,13 +756,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/indicators/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-313451744/cv2/cv2/__init__.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-313451744/builtins.py" />
     <entry file="file://$PROJECT_DIR$/MarketHolidays.xml">
@@ -1156,10 +1151,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ftp/pyftpserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1318">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="274">
+          <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
           <folding>
             <element signature="e#144#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modelrun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="459" column="45" selection-start-line="459" selection-start-column="45" selection-end-line="459" selection-end-column="45" />
+          <folding>
+            <element signature="e#83#99#0" expanded="true" />
+            <element signature="e#11686#11700#0" />
           </folding>
         </state>
       </provider>
