@@ -13,6 +13,9 @@ import threading
 import smtplib
 import email.mime.multipart
 import email.mime.text
+import os
+import shutil
+import zipfile
 
 from Calf import config
 from business_calendar import Calendar, MO, TU, WE, TH, FR
@@ -270,10 +273,6 @@ class Email:
             # print('发送失败!')
             return False
 
-import os
-import shutil
-import zipfile
-
 
 class File:
     """
@@ -392,6 +391,9 @@ class File:
         cls.rep = 1
         return n
 pass
+
+
+
 # Email.send_email(msgTo='leungjain@qq.com', content='hhhhhh')
 # date1 = dt.datetime(2017, 9, 29)
 # print(trading.fix_time(kline='min60', date=date1))

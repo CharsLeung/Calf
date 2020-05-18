@@ -13,45 +13,48 @@ try:
         l = f.read()
         a = json.loads(l)
         db = a['default']
-    #     dbname = db['dbname']
-    #     print('default db: {} have connected successfully'.format(dbname))
-    #     ip = db['ip']
-    #     port = db['port']
-    #     username = db['username']
-    #     password = db['password']
-    #     dbauth = db['dbauth']
-    # if username is None:
-    #     uri = 'mongodb://{host}:{port}'
-    #     connection = MongoClient(uri.format(host=ip, port=port))
-    # else:
-    #     uri = 'mongodb://{username}:{password}@{host}:{port}/{dbname}'
-    #     if dbauth is not None and len(dbauth) > 0:
-    #         uri += '?authSource={dbauth}'.format(dbauth=dbauth)
-    #
-    #     connection = MongoClient(uri.format(username=username, password=password,
-    #                                         host=ip, port=port, dbname=dbname))
-    # mongodb = connection[dbname]
-    fields = db.keys()
 
-    uri = 'mongodb://'
-    if 'username' in fields and 'password' in fields:
-        uri += '{username}:{password}@'.format(username=db['username'], password=db['password'])
-    # ip是必须的
-    uri += db['host']
-    # if 'port' in fields:
-    #     uri += ':%s' % db['port']
-    uri += '/?connectTimeoutMS=2000'
-    if 'replicaset' in fields:
-        uri += ';replicaSet=%s' % db['replicaset']
-    if 'dbauth' in fields:
-        uri += ';authSource=%s' % db['dbauth']
-    print('db-uri:', uri)
-    connection = MongoClient(uri)
-    if 'dbname' in fields:
-        mongodb = connection[db['dbname']]
+    fields = db.keys()
+    if 'username' in fields and 'password' in fields and ('@' in db[
+        'username'] or '@' in db['password']):
+        if 'dbname' in fields:
+            dbname = db.pop('dbname')
+        else:
+            dbname = None
+        _ = db['host'].split(':')
+        db['host'] = _[0]
+        db['port'] = int(_[1])
+        if 'replicaset' in fields:
+            db['replicaSet'] = db.pop('replicaset')
+        if 'dbauth' in fields:
+            db['authSource'] = db.pop('dbauth')
+        db['connectTimeoutMS'] = 2000
+        connection = MongoClient(**db)
+        mongodb = connection[db['dbname']] if dbname is not None else None
+        pass
     else:
-        mongodb = None
-except Exception:
+        uri = 'mongodb://'
+        if 'username' in fields and 'password' in fields:
+            uri += '{username}:{password}@'.format(
+                username=db['username'],
+                password=db['password'])
+        # ip是必须的
+        uri += db['host']
+        # if 'port' in fields:
+        #     uri += ':%s' % db['port']
+        uri += '/?connectTimeoutMS=2000'
+        if 'replicaset' in fields:
+            uri += ';replicaSet=%s' % db['replicaset']
+        if 'dbauth' in fields:
+            uri += ';authSource=%s' % db['dbauth']
+        print('db-uri:', uri)
+        connection = MongoClient(uri)
+        if 'dbname' in fields:
+            mongodb = connection[db['dbname']]
+        else:
+            mongodb = None
+except Exception as e:
+    print(e)
     raise Exception('connection MongoDB raise a error')
 
 
@@ -87,23 +90,46 @@ class MongoDB:
                     jn = json.loads(buffer)
                     db_ = jn[location]
                 fields = db_.keys()
-                uri = 'mongodb://'
-                if 'username' in fields and 'password' in fields:
-                    uri += '{username}:{password}@'.format(username=db_['username'],
-                                                           password=db_['password'])
-                # ip是必须的
-                uri += db_['host']
-                # if 'port' in fields:
-                #     uri += ':%s' % db_['port']
-                uri += '/?connectTimeoutMS=2000'
-                if 'replicaset' in fields:
-                    uri += ';replicaSet=%s' % db_['replicaset']
-                if 'dbauth' in fields:
-                    uri += ';authSource=%s' % db_['dbauth']
+                if 'username' in fields and 'password' in fields and (
+                        '@' in db_['username'] or '@' in db_['password']):
+                    if 'dbname' in fields:
+                        dbname = db_.pop('dbname')
+                    else:
+                        dbname = None
+                    _ = db_['host'].split(':')
+                    db_['host'] = _[0]
+                    db_['port'] = int(_[1])
+                    if 'replicaset' in fields:
+                        db_['replicaSet'] = db_.pop('replicaset')
+                    if 'dbauth' in fields:
+                        db_['authSource'] = db_.pop('dbauth')
+                    db_['connectTimeoutMS'] = 2000
+                    connection = MongoClient(**db_)
+                    # mongodb = connection[db['dbname']] if dbname is not None else None
+                    pass
+                else:
+                    uri = 'mongodb://'
+                    if 'username' in fields and 'password' in fields:
+                        uri += '{username}:{password}@'.format(
+                            username=db_['username'],
+                            password=db_['password'])
+                    # ip是必须的
+                    uri += db_['host']
+                    # if 'port' in fields:
+                    #     uri += ':%s' % db_['port']
+                    if 'dbname' in fields:
+                        dbname = db_.pop('dbname')
+                    else:
+                        dbname = None
+                    uri += '/?connectTimeoutMS=2000'
+                    if 'replicaset' in fields:
+                        uri += ';replicaSet=%s' % db_['replicaset']
+                    if 'dbauth' in fields:
+                        uri += ';authSource=%s' % db_['dbauth']
 
-                print('new db-uri:', uri)
-                connection = MongoClient(uri)
-                tn = db_name if db_name is not None else db_['dbname']
+                    print('new db-uri:', uri)
+                    connection = MongoClient(uri)
+                tn = db_name if db_name is not None else dbname
                 cls.location = location
                 cls.connection = connection
                 cls.db_name = tn

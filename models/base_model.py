@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pymongo
 from bson import ObjectId
-
+from pymongo import IndexModel
 from Calf.base.db import MongoDB, ASCENDING, DESCENDING, mongodb, connection
 from Calf.base.query_str_analyzer import analyzer
 from Calf.base.utils import log
@@ -81,10 +81,6 @@ class BaseModel(object):
             _ = args
 
         result = []
-        # for i in _:
-        #     if '_id' in i:
-        #         i['_id'] = ObjectId()
-        #     i['classtype'] = self.tablename.lower()
         try:
             if len(_):
                 result = self.mc.insert_many(_)
@@ -99,7 +95,7 @@ class BaseModel(object):
     def all(self):
         return self.query()
 
-    def query(self, sql=None, field=None):
+    def query(self, sql=None, field=None, **kwargs):
         """
         数据查询
         ds = Day.query(stock_code=1)
@@ -107,17 +103,17 @@ class BaseModel(object):
         找不到则返回 []
         """
         # _ = kwargs if len(kwargs) else args[0] if len(args) else None
-        ds = self.mc.find(sql, projection=field)
+        ds = self.mc.find(sql, projection=field, **kwargs)
         return ds
     
-    def aggregate(self, pipeline, allowDiskUse=True):
+    def aggregate(self, pipeline, allowDiskUse=True, **kwargs):
         """
         聚合函数
         :param pipeline: list 聚合表达式
         :param allowDiskUse: 运行使用磁盘来处理超过100M的数据
         :return: 
         """
-        return self.mc.aggregate(pipeline, allowDiskUse=allowDiskUse)
+        return self.mc.aggregate(pipeline, allowDiskUse=allowDiskUse, **kwargs)
 
     def asc(self, q, fields):
         asc_list = list((x, ASCENDING) for x in fields)
@@ -219,3 +215,22 @@ class BaseModel(object):
         :return:
         """
         return self.mc.update_many(condition, {'$set': form})
+
+    def add_index(self, index, **kwargs):
+        """
+        给表创建索引
+        :param index:
+        :return:
+        """
+        idx = IndexModel(index, **kwargs)
+        self.mc.create_indexes([idx])
+        pass
+    
+    def drop_index(self, name):
+        """
+        根据索引名删除索引
+        :param name: 
+        :return: 
+        """
+        self.mc.drop_index(name)
+        pass

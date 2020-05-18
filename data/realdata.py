@@ -5,6 +5,7 @@
 @author: LeungJain
 @time: 2017/12/26 9:43
 """
+import warnings
 import datetime as dt
 import pandas as pd
 from urllib.request import urlopen
@@ -89,12 +90,17 @@ class RealData:
             data_l = html.decode('gbk').split('\n')
             i = 0
             res = dict()
+            columns_len = len(cls.columns)
             for data in data_l:
                 if len(data):
                     d = data.split('="')
                     key = stocks_code[i]
                     i += 1
-                    res[key] = d[1][:-2].split(',')
+                    _ = d[1][:-2].split(',')[0:columns_len]
+                    if len(_) < columns_len:
+                        warnings.warn('exception result by sina api for:{}'.format(key))
+                        continue
+                    res[key] = _
             data = pd.DataFrame(res).T
             data[30] = data[30] + ' ' + data[31]
             data = data.rename(columns=RealData.columns)

@@ -34,6 +34,7 @@ TASK_CODE = {
     'close': 400
 }
 
+from .utils import *
 from .com import ModelClient
 from .com import notice
 from .com import BroadCast

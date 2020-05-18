@@ -1,0 +1,13 @@
+pytz
+numpy
+pandas
+apscheduler
+pymongo
+pandas_datareader
+pytdx
+numba
+matplotlib
+business_calendar
+pyftpdlib
+ftplib
+servicemanager

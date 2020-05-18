@@ -203,3 +203,4 @@ from .orderdata import OrderData
 from .modeldata import ModelData
 from .tickdata import TickData
 from .webdata import WebData
+from .eastdata import EastNotices

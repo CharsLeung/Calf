@@ -1,5 +1,5 @@
 {
-  "default": {
+  "default_": {
     "host": "192.168.10.249:27017",
     "dbname": "ppp",
     "username": "limu",
@@ -13,18 +13,18 @@
     "password": "8ELSzEdWrQiA",
     "dbauth": "admin"
   },
-  "default_": {
-    "host": "218.255.184.86:57075",
-    "dbname": "big-data",
-    "username": "lxj",
-    "password": "8ELSzEdWrQiA",
+  "gcxy": {
+    "host": "125.83.85.155:53751",
+    "dbname": "data",
+    "username": "user_for_read_and_write_any",
+    "password": "j3PxqH2tvK0J-write",
     "dbauth": "admin"
   },
   "server": {
-    "host": "123.234.5.140:57075",
-    "dbname": "big-data",
-    "username": "lxj",
-    "password": "8ELSzEdWrQiA",
+    "host": "123.234.5.140:53751",
+    "dbname": "ppp",
+    "username": "Chubby",
+    "password": "j3PxqH2tvK0J-1",
     "dbauth": "admin"
   },
     "server2": {
@@ -41,12 +41,9 @@
     "password": "8ELSzEdWrQiA",
     "dbauth": "admin"
   },
-  "local": {
-    "host": "192.168.10.249:27017",
-    "dbname": "ppp",
-    "username": "limu",
-    "password": "limu",
-    "dbauth": "admin"
+  "default": {
+    "host": "192.168.34.40:27017",
+    "dbname": "data_lake"
   },
   "leung": {
     "host": "127.0.0.1",
